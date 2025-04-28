@@ -1,0 +1,57 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "**.cpp"
+      - "**.h"
+      - "Doxyfile"
+  workflow_dispatch:
+
+env:
+  PDF_NAME: documentation
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set Version inside Doxyfile
+        run: |
+          echo "PROJECT_NUMBER = commit-$(git log -n 1 --pretty=format:'%h')" >> Doxyfile
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Generate Doxygen HTML
+        run: doxygen Doxyfile
+
+      - name: Create .nojekyll
+        run: touch docs/html/.nojekyll
+
+      - name: Install LaTeX Dependencies
+        run: |
+          sudo apt-get install -y texlive-latex-recommended texlive-pictures texlive-latex-extra
+
+      - name: Generate Doxygen PDF
+        run: |
+          make -C docs/latex
+          cp docs/latex/refman.pdf docs/html/${{ env.PDF_NAME }}.pdf
+
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/html
