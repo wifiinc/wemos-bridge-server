@@ -7,7 +7,7 @@ FetchContent_MakeAvailable(googletest)
 
 include(GoogleTest)
 
-add_executable(test_math test_math.cpp)
-target_link_libraries(test_math gtest_main math_lib)
+add_executable(test_wemosserver test_wemosserver.cpp)
+target_link_libraries(test_wemosserver gtest_main wemosserver_lib)
 
-gtest_discover_tests(test_math)
+gtest_discover_tests(test_wemosserver)

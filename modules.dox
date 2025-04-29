@@ -1,0 +1,10 @@
+/**
+ * @defgroup Tests
+ * @brief Unit tests for the Wemos Bridge application.
+ */
+
+/**
+ * @ingroup Tests
+ * @defgroup WemosServerTests
+ * @brief All tests related to the WemosServer class.
+ */
