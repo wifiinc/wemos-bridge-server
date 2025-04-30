@@ -9,14 +9,32 @@
 #ifndef I2CCLIENT_H
 #define I2CCLIENT_H
 
+#include <atomic>
+#include <mutex>
 #include <string>
+#include <thread>
 
 class I2CClient {
    private:
     int client_fd;
     int port;
     int hub_port;
+    struct sockaddr_in hub_address;
+
     std::string hub_ip;
+    std::thread receive_thread;
+    std::atomic<bool> connected;
+    std::atomic<bool> running;
+    std::mutex receive_mutex;
+
+    /**
+     * @brief Internal receive loop for handling incoming data from the I2C hub.
+     * @details This method runs in a separate thread and continuously listens for incoming data
+     * from the I2C hub. It processes the received data and stores it in a buffer for later use.
+     * @warning This method should not be called directly. It is intended to be used internally by
+     * the class.
+     */
+    void receiveLoop();
 
    public:
     /**
@@ -39,9 +57,17 @@ class I2CClient {
      * @brief Connects to the I2C hub.
      * @details This method establishes a connection to the I2C hub using the specified IP address
      * and port.
-     * @throws std::runtime_error if the connection fails.
+     * @return true if the connection is successful, false otherwise.
      */
-    void connect();
+    bool connect();
+
+    /**
+     * @brief Starts the I2C client.
+     * @details This method starts the I2C client and begins listening for incoming data from the
+     * I2C hub.
+     * @throws std::runtime_error if the client is not connected to the hub.
+     */
+    void start();
 
     /**
      * @brief Disconnects from the I2C hub.

@@ -12,6 +12,7 @@
 #include <string>
 
 #include "i2cclient.h"
+#include "slavemanager.h"
 
 class WemosServer {
    private:
@@ -20,6 +21,9 @@ class WemosServer {
     int hub_port;
     std::string hub_ip;
     I2CClient i2c_client;
+    SlaveManager slave_manager;
+
+    void handleClient(int client_fd, const struct sockaddr_in &client_address);
 
     void processSensorData(const uint8_t *data, size_t length);
 
