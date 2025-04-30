@@ -8,3 +8,15 @@
  * @defgroup WemosServerTests
  * @brief All tests related to the WemosServer class.
  */
+
+/**
+ * @ingroup Tests
+ * @defgroup I2CClientTests
+ * @brief All tests related to the I2CClient class.
+ */
+ 
+/**
+ * @ingroup Tests
+ * @defgroup SlaveManagerTests
+ * @brief All tests related to the SlaveManager class.
+ */
