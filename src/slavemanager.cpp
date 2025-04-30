@@ -21,7 +21,12 @@ SlaveManager::SlaveManager() {
 }
 
 SlaveManager::~SlaveManager() {
-    // TODO: possibly close all file descriptors
+    for (int i = 0; i <= MAX_SLAVE_ID; ++i) {
+        if (slave_devices[i].fd >= 0) {
+            close(slave_devices[i].fd);
+            slave_devices[i].fd = -1;
+        }
+    }
 }
 
 void SlaveManager::registerSlave(uint8_t slave_id, int fd) {
