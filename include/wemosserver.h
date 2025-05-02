@@ -9,37 +9,38 @@
 #ifndef WEMOSSERVER_H
 #define WEMOSSERVER_H
 
+#include <netinet/in.h>
 #include <string>
 
 #include "i2cclient.h"
 #include "slavemanager.h"
+#include "packets.h"
 
 class WemosServer {
    private:
     int server_fd;
-    int port;
-    int hub_port;
-    std::string hub_ip;
+    struct sockaddr_in listen_address;
+
     I2CClient i2c_client;
     SlaveManager slave_manager;
 
     void handleClient(int client_fd, const struct sockaddr_in &client_address);
 
-    void processSensorData(const uint8_t *data, size_t length);
+    void processSensorData(const uint8_t *Data, size_t Length, SensorType Type);
 
    public:
     /**
      * @brief Constructor for WemosServer class.
      * @details This constructor initializes the server with the specified port, hub IP address, and
      * hub port.
-     * @param _port The port number on which the server will listen for incoming connections.
-     * @param _hub_ip The IP address of the I2C hub.
-     * @param _hub_port The port number of the I2C hub.
+     * @param port The port number on which the server will listen for incoming connections.
+     * @param hub_ip The IP address of the I2C hub.
+     * @param hub_port The port number of the I2C hub.
      * @throws std::invalid_argument if the port number is invalid.
      * @warning This constructor does not start the server loop. The loop() method
      *          should be called separately to start accepting client connections.
      */
-    WemosServer(int _port, const std::string &_hub_ip, int _hub_port);
+    WemosServer(int port, const std::string &hub_ip, int hub_port);
     ~WemosServer();
 
     WemosServer(const WemosServer &) = delete;
@@ -55,12 +56,12 @@ class WemosServer {
      * @throws std::runtime_error if socket creation, binding, or listening fails.
      * @warning This method should be called before starting the server loop.
      */
-    void socket_setup();
+    void socketSetup();
 
     /**
      * @brief Sets up the I2C client for communication with the I2C hub.
      */
-    void setup_i2c_client();
+    void setupI2cClient();
 
     void start();
 

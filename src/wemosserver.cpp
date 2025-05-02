@@ -10,38 +10,34 @@
 #include "wemosserver.h"
 
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <string.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <thread>
 #include <vector>
 
-#include "packets.h"
+/**
+ * @brief Maximum data size to be read or sent over the wire.
+ */
+#define BUFFER_SIZE 1024
 
 /**
  * @brief Maximum number of clients that can be connected to the server.
  */
 #define MAX_CLIENTS 100
 
-WemosServer::WemosServer(int _port, const std::string &_hub_ip, int _hub_port)
-    : server_fd(-1),
-      port(_port),
-      hub_ip(_hub_ip),
-      hub_port(_hub_port),
-      i2c_client(hub_ip, hub_port) {
-    if (_port <= 0 || _port > 65535) {
-        throw std::invalid_argument("Invalid port number");
-    }
+WemosServer::WemosServer(int port, const std::string &hub_ip, int hub_port)
+    : server_fd(-1), i2c_client(hub_ip, hub_port) {
+    if (port <= 0 || port > 65535) throw std::invalid_argument("Invalid listen port number");
 
-    struct sockaddr_in address;
-    if (inet_pton(AF_INET, _hub_ip.c_str(), &(address.sin_addr)) <= 0) {
-        throw std::invalid_argument("Invalid IP address");
-    }
-
-    if (_hub_port <= 0 || _hub_port > 65535) {
-        throw std::invalid_argument("Invalid hub port number");
-    }
+    listen_address.sin_family = AF_INET;
+    listen_address.sin_addr = {INADDR_ANY};
+    listen_address.sin_port = htons(port);
 }
 
 WemosServer::~WemosServer() {
@@ -49,53 +45,50 @@ WemosServer::~WemosServer() {
     // other shit
 }
 
-void WemosServer::socket_setup() {
+void WemosServer::socketSetup() {
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("Socket creation failed");
-        throw std::runtime_error("Socket creation failed");
+        perror("socket() failed");
+        throw std::runtime_error("socket() failed");
         exit(EXIT_FAILURE);
     }
 
     const int enable_opt = 1;
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &enable_opt, sizeof(enable_opt)) < 0) {
-        perror("setsockopt failed");
-        throw std::runtime_error("Setsockopt failed");
+        perror("setsockopt() failed");
+        throw std::runtime_error("setsockopt() failed");
         exit(EXIT_FAILURE);
     }
 
-    struct sockaddr_in address;
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(port);
-
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-        perror("bind failed");
-        throw std::runtime_error("Bind failed");
+    if (bind(server_fd, (struct sockaddr *)&listen_address, sizeof(listen_address)) < 0) {
+        perror("bind() failed");
+        throw std::runtime_error("bind() failed");
         exit(EXIT_FAILURE);
     }
 
     if (listen(server_fd, MAX_CLIENTS) < 0) {
-        perror("listen failed");
-        throw std::runtime_error("Listen failed");
+        perror("listen() failed");
+        throw std::runtime_error("listen() failed");
         exit(EXIT_FAILURE);
     }
 
-    std::cout << "Listening on port " << port << " (max " << MAX_CLIENTS << " clients)"
-              << std::endl;
+    std::cout << "Listening on port " << ntohs(listen_address.sin_port) << " (max " << MAX_CLIENTS
+              << " clients)" << std::endl;
 }
 
-void WemosServer::setup_i2c_client() { i2c_client.connect(); }
+void WemosServer::setupI2cClient() { i2c_client.openConnection(); }
 
 void WemosServer::start() {}
 
 void WemosServer::tearDown() {}
 
-void WemosServer::processSensorData(const uint8_t *data, size_t length, enum sensor_type type) {
+void WemosServer::processSensorData(const uint8_t *data, size_t length, SensorType type) {
     switch (type) {
-        case BUTTON: {
+        case SensorType::BUTTON: {
             const struct sensor_packet_generic *btn = (const struct sensor_packet_generic *)data;
             printf("Processing button data: ID=%u\n", btn->id);
 
+            // TODO: een tafel-knop ingedrukt
+            /*
             if (btn->id == 0x69) {
                 toggle_led(0x50);
                 struct sensor_header header = {.length = sizeof(struct sensor_packet_light),
@@ -117,23 +110,30 @@ void WemosServer::processSensorData(const uint8_t *data, size_t length, enum sen
                                                       .led_state = get_led_state(0x55)};
                 send_to_rpi(&led_control, sizeof(led_control));
             }
+            */
 
             break;
         }
-        case TEMPERATURE: {
+        case SensorType::TEMPERATURE: {
             const struct sensor_packet_temperature *temp =
                 (const struct sensor_packet_temperature *)data;
             printf("Processing temperature data: ID=%u, Value=%.2f\n", temp->id, temp->value);
+
+            // TODO: do temperature things
             break;
         }
-        case CO2: {
+        case SensorType::CO2: {
             const struct sensor_packet_co2 *co2 = (const struct sensor_packet_co2 *)data;
             printf("Processing CO2 data: ID=%u, Value=%u\n", co2->id, co2->value);
+
+            // TODO: do CO2 things
             break;
         }
-        case HUMIDITY: {
+        case SensorType::HUMIDITY: {
             const struct sensor_packet_humidity *hum = (const struct sensor_packet_humidity *)data;
             printf("Processing humidity data: ID=%u, Value=%.2f\n", hum->id, hum->value);
+
+            // TODO: do humidity things
             break;
         }
         default:
@@ -146,8 +146,9 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
     uint8_t buffer[BUFFER_SIZE] = {0};
     ssize_t bytes_received;
 
-    printf("Thread %d : Connection accepted from %s:%d\n", std::this_thread::get_id(),
-           inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
+    std::cout << "Thread " << std::this_thread::get_id() << " : Connection accepted from "
+              << inet_ntoa(client_address.sin_addr) << ':' << ntohs(client_address.sin_port)
+              << std::endl;
 
     while ((bytes_received = recv(client_fd, buffer, BUFFER_SIZE, 0)) > 0) {
         printf("Received %zd bytes from %s:%d:\n", bytes_received,
@@ -166,13 +167,13 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                 break;
             }
 
-            if (ptype == DATA) {
-                enum sensor_type type = (enum sensor_type)buffer[offset + 2];
+            if (ptype == (uint8_t)PacketType::DATA) {
+                SensorType type = (SensorType)buffer[offset + 2];
 
                 printf("Packet length: %u, type: %u\n", length, type);
 
                 processSensorData(&buffer[offset + sizeof(struct sensor_header)], length, type);
-            } else if (ptype == HEARTBEAT) {
+            } else if (ptype == (uint8_t)PacketType::HEARTBEAT) {
                 struct sensor_heartbeat *heartbeat =
                     (struct sensor_heartbeat *)&buffer[offset + sizeof(struct sensor_header)];
                 printf("Heartbeat packet: ID=%u, type=%u\n", heartbeat->id, heartbeat->type);

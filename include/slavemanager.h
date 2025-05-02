@@ -10,12 +10,13 @@
 #ifndef SLAVEMANAGER_H
 #define SLAVEMANAGER_H
 
-#include <string>
-
 /**
  * @brief Biggest possible slave ID.
  */
 #define MAX_SLAVE_ID 0xFF
+
+#include <stdint.h>
+#include <stddef.h>
 
 struct SlaveDevice {
     int fd;

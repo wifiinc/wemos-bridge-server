@@ -1,3 +1,6 @@
+#ifndef PACKETS_H
+#define PACKETS_H
+
 #include <cstdint>
 
 enum class SensorType : uint8_t {
@@ -30,6 +33,7 @@ struct sensor_heartbeat {
 struct sensor_packet_generic {
     SensorType type;
     uint8_t id;
+    bool value;
 } __attribute__((packed));
 
 struct sensor_packet_temperature {
@@ -56,3 +60,17 @@ struct sensor_packet_light {
     uint8_t target_state;
 } __attribute__((packed));
 // --- End Structures ---
+
+struct sensor_packet {
+    struct sensor_header header;
+
+    union {
+        struct sensor_packet_generic generic;
+        struct sensor_packet_temperature temperature;
+        struct sensor_packet_co2 co2;
+        struct sensor_packet_humidity humidity;
+        struct sensor_packet_light light;
+    } data;
+};
+
+#endif  // PACKETS_H
