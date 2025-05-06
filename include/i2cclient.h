@@ -58,18 +58,27 @@ class I2CClient {
     /**
      * @brief Constructor for I2CClient class.
      * @details This constructor initializes the I2C client with the specified IP address and port.
-     * @param ip The IP address of the I2C hub.
-     * @param port The port number of the I2C hub.
      * @throws std::invalid_argument if the port number is invalid.
-     * @warning This constructor does not start the I2C client. The connect() method
+     * @warning This constructor does not start the I2C client. Use setup(), openConnection() and start()
+     * instead.
      */
-    I2CClient(const std::string &ip, int port);
+    I2CClient();
     ~I2CClient();
 
     I2CClient(const I2CClient &) = delete;
     I2CClient &operator=(const I2CClient &) = delete;
     I2CClient(I2CClient &&) = delete;
     I2CClient &operator=(I2CClient &&) = delete;
+
+    /**
+     * @brief Initializes the settings necessary for connecting to the I2C hub.
+     * @details This method initializes the remote address details (IP address and port) for the I2C
+     * hub to connect to.
+     * @param ip The IP address of the I2C hub.
+     * @param port The port number of the I2C hub.
+     * @throws std::invalid_argument if an invalid IP address or port is passed
+     */
+    void setup(const std::string &ip, int port);
 
     /**
      * @brief Connects to the I2C hub.

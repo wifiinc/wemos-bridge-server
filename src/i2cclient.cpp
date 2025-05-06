@@ -25,26 +25,15 @@
 
 #define BUFFER_SIZE 1024
 
-I2CClient::I2CClient(const std::string &ip, int port)
-    : client_fd(-1), connected(false), running(false) {
+I2CClient::I2CClient() : client_fd(-1), connected(false), running(false) {
     memset(&hub_address, 0, sizeof(hub_address));
-
-    if (inet_pton(AF_INET, ip.c_str(), &hub_address.sin_addr) <= 0) {
-      perror("inet_pton()");
-      throw std::invalid_argument("Invalid IP address");
-    }
-
-    if (port <= 0 || port > 65535) throw std::invalid_argument("Invalid port number");
-
-    hub_address.sin_family = AF_INET;
-    hub_address.sin_port = htons(port);
 }
 
 I2CClient::~I2CClient() { closeConnection(); }
 
 // first unlocks the mutex passed, then continues in the while loop
 // WARNING: ! only use when the mutex is currently locked !
-// just "continue:" otherwise
+// just "continue;" otherwise
 #define THREAD_RELINQUISH(mut) \
     {                          \
         mut.unlock();          \
@@ -139,6 +128,18 @@ void I2CClient::receiveLoop() {
     std::terminate();
 }
 
+void I2CClient::setup(const std::string &hub_ip, int hub_port) {
+    if (inet_pton(AF_INET, hub_ip.c_str(), &hub_address.sin_addr) <= 0) {
+        perror("inet_pton()");
+        throw std::invalid_argument("Invalid IP address");
+    }
+
+    if (hub_port <= 0 || hub_port > 65535) throw std::invalid_argument("Invalid port number");
+
+    hub_address.sin_family = AF_INET;
+    hub_address.sin_port = htons(hub_port);
+}
+
 bool I2CClient::openConnection() {
     if (client_fd >= 0) {
         close(client_fd);
@@ -146,26 +147,26 @@ bool I2CClient::openConnection() {
     }
     connected = false;
 
-    std::string ip_address = inet_ntoa(hub_address.sin_addr);
+    std::string ip(inet_ntoa(hub_address.sin_addr));
     uint16_t port = ntohs(hub_address.sin_port);
 
-    std::cout << "Connecting to I2C hub at " << ip_address << ":" << ntohs(hub_address.sin_port)
-              << std::endl;
+    std::cout << "Connecting to I2C hub at " << ip << ":" << port << std::endl;
 
-    client_fd = socket(AF_INET, SOCK_STREAM, 0);
+    client_fd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
     if (client_fd < 0) {
         std::cerr << "Socket creation failed" << std::endl;
         return false;
     }
 
     if (connect(client_fd, (struct sockaddr *)&hub_address, sizeof(hub_address)) < 0) {
-        std::cerr << "Connection failed: " << strerror(errno) << std::endl;
+        int err = errno;
+        std::cerr << "Connection failed: " << strerror(err) << std::endl;
         close(client_fd);
         client_fd = -1;
         return false;
     }
 
-    std::cout << "Connected to I2C hub at " << ip_address << ":" << port << std::endl;
+    std::cout << "Connected to I2C hub at " << ip << ":" << port << std::endl;
     connected = true;
 
     return true;
@@ -173,7 +174,9 @@ bool I2CClient::openConnection() {
 
 void I2CClient::start() {
     if (!connected) {
-        std::cerr << "Could not start communicating with I2C-bridge because not connected to I2C hub" << std::endl;
+        std::cerr
+            << "Could not start communicating with I2C-bridge because not connected to I2C hub"
+            << std::endl;
         throw std::runtime_error("Not connected to I2C-bridge");
     }
 
@@ -183,7 +186,8 @@ void I2CClient::start() {
 
 void I2CClient::closeConnection() {
     if (!connected) {
-        std::cerr << "Could not close the connection to I2C-bridge because not connected to I2C hub" << std::endl;
+        std::cerr << "Could not close the connection to I2C-bridge because not connected to I2C hub"
+                  << std::endl;
         return;
     }
 

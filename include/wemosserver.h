@@ -10,11 +10,12 @@
 #define WEMOSSERVER_H
 
 #include <netinet/in.h>
+
 #include <string>
 
 #include "i2cclient.h"
-#include "slavemanager.h"
 #include "packets.h"
+#include "slavemanager.h"
 
 class WemosServer {
    private:
@@ -22,6 +23,9 @@ class WemosServer {
     struct sockaddr_in listen_address;
 
     I2CClient i2c_client;
+    std::string hub_ip;
+    int hub_port;
+
     SlaveManager slave_manager;
 
     void handleClient(int client_fd, const struct sockaddr_in &client_address);
@@ -54,7 +58,7 @@ class WemosServer {
      *          starts listening for incoming client connections. It also sets the
      *          socket options to allow address reuse.
      * @throws std::runtime_error if socket creation, binding, or listening fails.
-     * @warning This method should be called before starting the server loop.
+     * @warning This metho d should be called before starting the server loop.
      */
     void socketSetup();
 

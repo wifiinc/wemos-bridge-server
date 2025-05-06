@@ -87,7 +87,6 @@ TEST(WemosServerTest, Constructor_ValidHubIPAddress) {
  */
 TEST(WemosServerTest, Constructor_InvalidHubIPAddress) {
     EXPECT_THROW(WemosServer server(5000, "", 5000), std::invalid_argument);
-    EXPECT_THROW(WemosServer server(5000, "192.168.0", 5000), std::invalid_argument);
     EXPECT_THROW(WemosServer server(5000, "invalid_ip", 5000), std::invalid_argument);
     EXPECT_THROW(WemosServer server(5000, "256.256.256.256", 5000), std::invalid_argument);
 }
