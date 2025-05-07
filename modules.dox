@@ -20,3 +20,10 @@
  * @defgroup SlaveManagerTests
  * @brief All tests related to the SlaveManager class.
  */
+
+
+/**
+ * @defgroup Packets
+ * @brief Contains all packet definitions in the application
+ * @warning THESE MUST BE KEPT IN SYNC WITH OTHER SOFTWARE
+ */
