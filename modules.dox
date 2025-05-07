@@ -1,0 +1,29 @@
+/**
+ * @defgroup Tests
+ * @brief Unit tests for the Wemos Bridge application.
+ */
+
+/**
+ * @ingroup Tests
+ * @defgroup WemosServerTests
+ * @brief All tests related to the WemosServer class.
+ */
+
+/**
+ * @ingroup Tests
+ * @defgroup I2CClientTests
+ * @brief All tests related to the I2CClient class.
+ */
+ 
+/**
+ * @ingroup Tests
+ * @defgroup SlaveManagerTests
+ * @brief All tests related to the SlaveManager class.
+ */
+
+
+/**
+ * @defgroup Packets
+ * @brief Contains all packet definitions in the application
+ * @warning THESE MUST BE KEPT IN SYNC WITH OTHER SOFTWARE
+ */
