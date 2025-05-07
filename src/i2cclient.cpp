@@ -120,8 +120,9 @@ void I2CClient::receiveLoop() {
 
             queue_mutex.lock();
             read_packets_queue.push(packet);
-            queue_condition.notify_one();
             queue_mutex.unlock();
+            queue_condition
+                .notify_one();  // maybe switch this with the line before if issues occur - Erynn
         }
     }
 

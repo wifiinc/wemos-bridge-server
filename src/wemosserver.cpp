@@ -53,27 +53,48 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 
         size_t offset = 0;
         while (offset + 2 <= bytes_received) {
-            uint8_t length = buffer[offset];
-            uint8_t ptype = buffer[offset + 1];
+            struct sensor_packet *pkt_ptr = (struct sensor_packet *)&buffer[offset];
+            uint8_t data_length = pkt_ptr->header->length;
+            PacketType ptype = pkt_ptr->header->ptype;
+            SensorType s_type = pkt_ptr->data.generic.metadata.sensor_type;
 
-            if (offset + length > bytes_received) {
+            if (offset + data_length + sizeof(struct sensor_header) > bytes_received) {
                 printf("Incomplete packet received, discarding\n");
                 break;
             }
 
-            if (ptype == (uint8_t)PacketType::DATA) {
-                SensorType type = (SensorType)buffer[offset + 2];
+            switch (ptype) {
+                case PacketType::DATA:
+                    printf("Packet length: %u, type: %u\n", data_length, s_type);
 
-                printf("Packet length: %u, type: %u\n", length, type);
+                    processSensorData(&buffer[offset]);
+                    break;
 
-                processSensorData(&buffer[offset + sizeof(struct sensor_header)], length, type);
-            } else if (ptype == (uint8_t)PacketType::HEARTBEAT) {
-                struct sensor_heartbeat *heartbeat =
-                    (struct sensor_heartbeat *)&buffer[offset + sizeof(struct sensor_header)];
-                printf("Heartbeat packet: ID=%u, type=%u\n", heartbeat->id, heartbeat->type);
+                case PacketType::HEARTBEAT:
+                    printf("Heartbeat packet: ID=%u, type=%u\n",
+                           pkt_ptr->data.heartbeat.metadata.sensor_id,
+                           pkt_ptr->data.heartbeat.metadata.sensor_type);
 
-                // Register the slave device
-                slave_manager.registerSlave(heartbeat->id, client_fd);
+                    // Register the slave device
+                    slave_manager.registerSlave(pkt_ptr->data.heartbeat.metadata.sensor_id,
+                                                client_fd);
+                    break;
+
+                case PacketType::DASHBOARD_GET:
+                    printf("Dashboard requested data on sensor: ID=%u, type=%u",
+                           pkt_ptr->data.generic.sensor_id, pkt_ptr->data.generic.sensor_type);
+
+                    sendToDashboard(client_fd, pkt_ptr->data.generic.metadata.sensor_id);
+                    break;
+
+                case PacketType::DASHBOARD_POST:
+                    // the dashboard is trying to update something
+
+                    break;
+
+                default:
+                    // unknown packet type
+                    break;
             }
 
             offset += length + sizeof(struct sensor_header);
@@ -90,11 +111,10 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
     close(client_fd);
 }
 
-void WemosServer::processSensorData(const uint8_t *data, size_t length, SensorType type) {
-    switch (type) {
+void WemosServer::processSensorData(const struct sensor_packet *packet) {
+    switch (packet->sensor_type) {
         case SensorType::BUTTON: {
-            const struct sensor_packet_generic *btn = (const struct sensor_packet_generic *)data;
-            printf("Processing button data: ID=%u\n", btn->id);
+            printf("Processing button data: ID=%u\n", packet->data.generic.metadata.sensor_id);
 
             // TODO: een tafel-knop ingedrukt
             /*
@@ -124,31 +144,42 @@ void WemosServer::processSensorData(const uint8_t *data, size_t length, SensorTy
             break;
         }
         case SensorType::TEMPERATURE: {
-            const struct sensor_packet_temperature *temp =
-                (const struct sensor_packet_temperature *)data;
-            printf("Processing temperature data: ID=%u, Value=%.2f\n", temp->id, temp->value);
+            printf("Processing temperature data: ID=%u, Value=%.2f\n",
+                   packet->data.temperature.metadata.sensor_id, packet->data.temperature.value);
 
             // TODO: do temperature things
             break;
         }
         case SensorType::CO2: {
-            const struct sensor_packet_co2 *co2 = (const struct sensor_packet_co2 *)data;
-            printf("Processing CO2 data: ID=%u, Value=%u\n", co2->id, co2->value);
+            printf("Processing CO2 data: ID=%u, Value=%u\n", packet->data.co2.metadata.sensor_id,
+                   packet->data.co2.value);
 
             // TODO: do CO2 things
             break;
         }
         case SensorType::HUMIDITY: {
-            const struct sensor_packet_humidity *hum = (const struct sensor_packet_humidity *)data;
-            printf("Processing humidity data: ID=%u, Value=%.2f\n", hum->id, hum->value);
+            printf("Processing humidity data: ID=%u, Value=%.2f\n",
+                   packet->data.humidity.metadata.sensor_id, packet->data.humidity.value);
 
             // TODO: do humidity things
             break;
         }
         default:
-            printf("No action defined for sensor type %u\n", type);
+            printf("No action defined for sensor type %u\n",
+                   packet->data.generic.metadata.sensor_type);
             break;
     }
+}
+
+void WemosServer::sendToDashboard(int dashboard_fd, uint8_t slave_id) {
+    struct sensor_packet sensor_data;
+
+    sensor_data = slave_manager.getSlaveDevice(slave_id).sensor_data;
+    sensor_data.header.ptype = PacketType::DASHBOARD_RESPONSE;
+
+    int length_to_send = sensor_data.header.length + sizeof(struct sensor_header);
+
+    send(dashboard_fd, &sensor_data, length_to_send, 0);
 }
 // private methods end here
 
@@ -212,7 +243,7 @@ void WemosServer::start() {
     while (true) {
         struct sensor_packet pkt;
         try {
-            pkt = i2c_client.retrievePacket();
+            pkt = i2c_client.retrievePacket()
         } catch (std::runtime_error &) {
             // this means there is no new I2C packet available
         }

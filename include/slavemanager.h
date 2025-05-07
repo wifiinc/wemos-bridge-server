@@ -20,8 +20,13 @@
 
 #include "packets.h"
 
+/**
+ * @brief Structure representing a slave device.
+ * @details This structure contains the file descriptor associated with the slave device.
+ */
 struct SlaveDevice {
     int fd;
+    struct sensor_packet sensor_data;
 };
 
 class SlaveManager {
