@@ -15,8 +15,10 @@
  */
 #define MAX_SLAVE_ID 0xFF
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
+
+#include "packets.h"
 
 struct SlaveDevice {
     int fd;

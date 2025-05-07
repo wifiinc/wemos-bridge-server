@@ -59,8 +59,8 @@ class I2CClient {
      * @brief Constructor for I2CClient class.
      * @details This constructor initializes the I2C client with the specified IP address and port.
      * @throws std::invalid_argument if the port number is invalid.
-     * @warning This constructor does not start the I2C client. Use setup(), openConnection() and start()
-     * instead.
+     * @warning This constructor does not start the I2C client. Use setup(), openConnection() and
+     * start() instead.
      */
     I2CClient();
     ~I2CClient();
