@@ -26,8 +26,8 @@ int main() {
     setbuf(stdout, NULL);
     std::cout << "Starting Wemos Bridge on port " << SERVER_PORT << std::endl;
 
-    signal(SIGINT, signalHandler);
-    signal(SIGTERM, signalHandler);
+    // signal(SIGINT, signalHandler);
+    // signal(SIGTERM, signalHandler);
 
     WemosServer server(SERVER_PORT, I2C_HUB_IP, I2C_HUB_PORT);
     server.start();

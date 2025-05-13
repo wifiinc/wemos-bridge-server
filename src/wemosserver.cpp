@@ -237,6 +237,8 @@ void WemosServer::socketSetup() {
 void WemosServer::setupI2cClient() { i2c_client.setup(hub_ip, hub_port); }
 
 void WemosServer::start() {
+    socketSetup();
+
     setupI2cClient();
     i2c_client.openConnection();
     i2c_client.start();
@@ -245,18 +247,33 @@ void WemosServer::start() {
         struct sensor_packet pkt;
         try {
             pkt = i2c_client.retrievePacket();
-        } catch (std::runtime_error &) {
-            // this means there is no new I2C packet available
+            // std::cout << "packet received from the I2C hub!" << std::endl;
+
+            // now do things with the I2C packet if necessary
+
+        } catch (std::runtime_error &exc) {
+            /* this means there is no new I2C packet available */
+            // std::cerr << exc.what() << std::endl;
         }
 
         struct sockaddr_in client_address;
         socklen_t client_addr_len = sizeof(client_address);
+
+        // FIXME: this 'accept()' call does not successfully accept connections (errno 11 / EAGAIN)
+        // and i can't for the life of me figure out why; gg
+        // - Erynn
         int client_fd = accept(server_fd, (struct sockaddr *)&client_address, NULL);
 
         if (-1 == client_fd) {
             // no one tried to connect
+            int err = errno;  // will likely be EAGAIN
+            // perror("accept()");
+            // std::cout << err << std::endl;
             continue;
         }
+
+        std::cout << "Connection accepted from " << inet_ntoa(client_address.sin_addr) << ":"
+                  << ntohs(client_address.sin_port) << std::endl;
 
         handleClient(client_fd, client_address);
     }

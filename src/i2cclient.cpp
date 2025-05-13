@@ -93,38 +93,41 @@ void I2CClient::receiveLoop() {
 
         for (int i = 0; i < amount_read; ++i) {
             printf("%02X ", receive_buffer[i]);
-            printf("\n");
         }
+        printf("\n");
 
         {
             size_t buffer_offset = 0;
 
-            while (buffer_offset + sizeof(struct sensor_header) <= amount_read) {
-                const struct sensor_header *head = (const struct sensor_header *)receive_buffer;
+            do {
+                const struct sensor_header *head =
+                    (const struct sensor_header *)&receive_buffer[buffer_offset];
                 uint8_t length = head->length;
                 uint8_t p_type = (uint8_t)head->ptype;
 
                 uint8_t s_type = receive_buffer[sizeof(*head)];
 
-                if (buffer_offset + length > amount_read) {
+                if ((buffer_offset + sizeof(*head) + length) > amount_read) {
                     // oopsie woopsie; incomplete packet from RPI
                     printf(
                         "We received an incomplete packet from the Raspberry Pi I2C controller; "
                         "Discarding...\n");
                     break;
                 }
-            }
 
-            struct sensor_packet packet = {0};
-            int to_copy = amount_read;
-            if (to_copy > sizeof(packet)) to_copy = sizeof(packet);
-            memcpy(&packet, receive_buffer, to_copy);
+                struct sensor_packet packet = {0};
+                int to_copy = sizeof(*head) + length;
+                if (to_copy > sizeof(packet)) to_copy = sizeof(packet);
+                memcpy(&packet, receive_buffer + buffer_offset, to_copy);
 
-            queue_mutex.lock();
-            read_packets_queue.push(packet);
-            queue_mutex.unlock();
-            queue_condition
-                .notify_one();  // maybe switch this with the line before if issues occur - Erynn
+                queue_mutex.lock();
+                read_packets_queue.push(packet);
+                queue_mutex.unlock();
+                queue_condition.notify_one();  // maybe switch this with the line before if issues
+                                               // occur - Erynn
+
+                buffer_offset += sizeof(*head) + length;
+            } while (buffer_offset + sizeof(struct sensor_header) <= amount_read);
         }
     }
 
@@ -212,6 +215,7 @@ struct sensor_packet I2CClient::retrievePacket(bool block) {
     if (read_packets_queue.size() < 1 && !block) {
         // there are no packets available to retrieve,
         // and we're not blocking
+        queue_mutex.unlock();
         throw std::runtime_error("No packet data available to retrieve from I2C-bridge");
     } else if (read_packets_queue.size() < 1) {
         // there are no packets available, but we block until there is
