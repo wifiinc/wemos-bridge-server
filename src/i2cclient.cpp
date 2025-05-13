@@ -29,7 +29,9 @@ I2CClient::I2CClient() : client_fd(-1), connected(false), running(false) {
     memset(&hub_address, 0, sizeof(hub_address));
 }
 
-I2CClient::~I2CClient() { closeConnection(); }
+I2CClient::~I2CClient() {
+    if (connected) closeConnection();
+}
 
 // first unlocks the mutex passed, then continues in the while loop
 // WARNING: ! only use when the mutex is currently locked !
@@ -68,7 +70,7 @@ void I2CClient::receiveLoop() {
         // if we get here, there is guaranteed to be readable data.
         // either this data is because the other end disconnected, or because there
         // is proper data to read from the wire
-        int amount_read = recv(pf.fd, receive_buffer, BUFFER_SIZE, 0);
+        int amount_read = recv(pf.fd, receive_buffer, BUFFER_SIZE, MSG_DONTWAIT);
 
         if (amount_read == -1) {
             // error occured, errno set
@@ -153,7 +155,7 @@ bool I2CClient::openConnection() {
 
     std::cout << "Connecting to I2C hub at " << ip << ":" << port << std::endl;
 
-    client_fd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
+    client_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (client_fd < 0) {
         std::cerr << "Socket creation failed" << std::endl;
         return false;
@@ -187,7 +189,8 @@ void I2CClient::start() {
 
 void I2CClient::closeConnection() {
     if (!connected) {
-        std::cerr << "Could not close the connection to I2C-bridge because not connected to I2C hub"
+        std::cerr << "Could not close the connection to I2C-bridge because not connected to I2C "
+                     "hub (either already closed, or never connected in the first place)"
                   << std::endl;
         return;
     }

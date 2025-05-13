@@ -67,7 +67,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                 case PacketType::DATA:
                     printf("Packet length: %u, type: %u\n", data_length, s_type);
 
-                    processSensorData((const struct sensor_packet*)&buffer[offset]);
+                    processSensorData((const struct sensor_packet *)&buffer[offset]);
                     break;
 
                 case PacketType::HEARTBEAT:
@@ -82,7 +82,8 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 
                 case PacketType::DASHBOARD_GET:
                     printf("Dashboard requested data on sensor: ID=%u, type=%u",
-                           pkt_ptr->data.generic.metadata.sensor_id, pkt_ptr->data.generic.metadata.sensor_type);
+                           pkt_ptr->data.generic.metadata.sensor_id,
+                           pkt_ptr->data.generic.metadata.sensor_type);
 
                     sendToDashboard(client_fd, pkt_ptr->data.generic.metadata.sensor_id);
                     break;
