@@ -258,17 +258,10 @@ void WemosServer::start() {
 
         struct sockaddr_in client_address;
         socklen_t client_addr_len = sizeof(client_address);
-
-        // FIXME: this 'accept()' call does not successfully accept connections (errno 11 / EAGAIN)
-        // and i can't for the life of me figure out why; gg
-        // - Erynn
-        int client_fd = accept(server_fd, (struct sockaddr *)&client_address, NULL);
+        int client_fd = accept(server_fd, (struct sockaddr *)&client_address, &client_addr_len);
 
         if (-1 == client_fd) {
             // no one tried to connect
-            int err = errno;  // will likely be EAGAIN
-            // perror("accept()");
-            // std::cout << err << std::endl;
             continue;
         }
 

@@ -10,8 +10,8 @@
 #include "wemosserver.h"
 
 #define SERVER_PORT 5000
-#define I2C_HUB_IP "127.0.0.1"
-#define I2C_HUB_PORT 5001
+#define I2C_HUB_IP "10.0.0.3"
+#define I2C_HUB_PORT 5000
 
 std::atomic<bool> global_shutdown_flag(false);
 
