@@ -30,7 +30,7 @@ class WemosServer {
 
     void handleClient(int client_fd, const struct sockaddr_in &client_address);
 
-    void processSensorData(const uint8_t *data);
+    void processSensorData(const struct sensor_packet *data);
 
     void sendToDashboard(int dashboard_fd, uint8_t sensor_id);
 

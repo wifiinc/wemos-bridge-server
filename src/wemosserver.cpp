@@ -54,8 +54,8 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
         size_t offset = 0;
         while (offset + 2 <= bytes_received) {
             struct sensor_packet *pkt_ptr = (struct sensor_packet *)&buffer[offset];
-            uint8_t data_length = pkt_ptr->header->length;
-            PacketType ptype = pkt_ptr->header->ptype;
+            uint8_t data_length = pkt_ptr->header.length;
+            PacketType ptype = pkt_ptr->header.ptype;
             SensorType s_type = pkt_ptr->data.generic.metadata.sensor_type;
 
             if (offset + data_length + sizeof(struct sensor_header) > bytes_received) {
@@ -67,7 +67,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                 case PacketType::DATA:
                     printf("Packet length: %u, type: %u\n", data_length, s_type);
 
-                    processSensorData(&buffer[offset]);
+                    processSensorData((const struct sensor_packet*)&buffer[offset]);
                     break;
 
                 case PacketType::HEARTBEAT:
@@ -82,7 +82,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 
                 case PacketType::DASHBOARD_GET:
                     printf("Dashboard requested data on sensor: ID=%u, type=%u",
-                           pkt_ptr->data.generic.sensor_id, pkt_ptr->data.generic.sensor_type);
+                           pkt_ptr->data.generic.metadata.sensor_id, pkt_ptr->data.generic.metadata.sensor_type);
 
                     sendToDashboard(client_fd, pkt_ptr->data.generic.metadata.sensor_id);
                     break;
@@ -97,7 +97,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                     break;
             }
 
-            offset += length + sizeof(struct sensor_header);
+            offset += data_length + sizeof(struct sensor_header);
         }
     }
 
@@ -112,7 +112,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 }
 
 void WemosServer::processSensorData(const struct sensor_packet *packet) {
-    switch (packet->sensor_type) {
+    switch (packet->data.generic.metadata.sensor_type) {
         case SensorType::BUTTON: {
             printf("Processing button data: ID=%u\n", packet->data.generic.metadata.sensor_id);
 
@@ -243,7 +243,7 @@ void WemosServer::start() {
     while (true) {
         struct sensor_packet pkt;
         try {
-            pkt = i2c_client.retrievePacket()
+            pkt = i2c_client.retrievePacket();
         } catch (std::runtime_error &) {
             // this means there is no new I2C packet available
         }
