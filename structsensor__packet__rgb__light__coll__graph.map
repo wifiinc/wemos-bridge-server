@@ -1,0 +1,10 @@
+<map id="sensor_packet_rgb_light" name="sensor_packet_rgb_light">
+<area shape="rect" id="Node000001" title="Structure for RGB light sensor packets." alt="" coords="131,261,301,327"/>
+<area shape="rect" id="Node000002" href="$structsensor__metadata.html" title="Structure for sensor metadata, which is always included in any packet." alt="" coords="97,133,223,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,198,177,236,182,246,177,248,172,238,161,200"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,93,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,70,63,90,73,108,86,122,82,125,69,111,58,92,51,72"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="193,5,252,71"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="246,70,256,94,265,134,269,166,266,199,256,238,252,248,247,246,251,237,261,198,264,166,260,135,251,95,241,72"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="195,71,178,96,170,118,165,117,174,93,191,68"/>
+</map>

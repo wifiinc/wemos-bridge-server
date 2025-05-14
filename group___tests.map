@@ -1,0 +1,6 @@
+<map id="Tests" name="Tests">
+<area shape="rect" id="Node000003" href="$group___i2_c_client_tests.html" title="All tests related to the I2CClient class." alt="" coords="125,5,239,31"/>
+<area shape="rect" id="Node000004" href="$group___slave_manager_tests.html" title="All tests related to the SlaveManager class." alt="" coords="108,55,256,80"/>
+<area shape="rect" id="Node000001" title="Unit tests for the Wemos Bridge application." alt="" coords="5,55,60,80"/>
+<area shape="rect" id="Node000002" href="$group___wemos_server_tests.html" title="All tests related to the WemosServer class." alt="" coords="109,104,255,129"/>
+</map>

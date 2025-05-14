@@ -1,14 +1,21 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Wemos Bridge Server: Test List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
@@ -19,17 +26,19 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
-   <div id="projectname">Wemos Bridge Server<span id="projectnumber">&#160;commit-f851f15</span>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Wemos Bridge Server
+   &#160;<span id="projectnumber">commit-0692db8</span>
    </div>
-   <div id="projectbrief">Better then any software hhs has ever made</div>
+   <div id="projectbrief">Better than any software HHS has ever made</div>
   </td>
  </tr>
  </tbody>
@@ -96,23 +105,34 @@ $(document).ready(function(){initNavTree('test.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>File <a class="el" href="test__math_8cpp.html">test_math.cpp</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_test000001"></a>MathTest.Add</p><ul>
-<li>Verifies that the <code>add</code> function correctly computes the sum of two integers.</li>
-<li>Example: <code>add(2, 3)</code> should return <code>5</code>.</li>
-</ul>
-<p class="enddd"><a class="anchor" id="_test000002"></a>MathTest.Subtract</p><ul>
-<li>Verifies that the <code>subtract</code> function correctly computes the difference between two integers.</li>
-<li><p class="startli">Examples:</p><ul>
-<li><code>subtract(10, 3)</code> should return <code>7</code>.</li>
-<li><code>subtract(9, 3)</code> should return <code>6</code>.</li>
-</ul>
-<p class="startli"><a class="anchor" id="_test000003"></a>MathTest.SubtractNegative</p>
-</li>
-<li>Verifies that the <code>subtract</code> function handles subtraction with negative integers correctly.</li>
-<li>Example: <code>subtract(10, -3)</code> should return <code>13</code>. </li>
-</ul>
-</dd>
+<dt>Member <a class="el" href="group___i2_c_client_tests.html#ga20fa54020e014634f4401ae6df3d947a">TEST</a>  (I2CClientTests, setup_ValidPort)</dt>
+<dd><a class="anchor" id="_test000001"></a>I2CClientTests.setup_ValidPort  </dd>
+<dt>Member <a class="el" href="group___i2_c_client_tests.html#gac208fadd75ebbee4a400af0b5dbb8f07">TEST</a>  (I2CClientTests, setup_InvalidPort_Negative)</dt>
+<dd><a class="anchor" id="_test000002"></a>I2CClientTests.setup_InvalidPort_Negative  </dd>
+<dt>Member <a class="el" href="group___i2_c_client_tests.html#ga648dcd224c54a50657bfc6c7698a514e">TEST</a>  (I2CClientTests, setup_InvalidPort_Zero)</dt>
+<dd><a class="anchor" id="_test000003"></a>I2CClientTests.setup_InvalidPort_Zero  </dd>
+<dt>Member <a class="el" href="group___i2_c_client_tests.html#ga8278239d805128e6c06f487f51b256f3">TEST</a>  (I2CClientTests, setup_InvalidPort_High)</dt>
+<dd><a class="anchor" id="_test000004"></a>I2CClientTests.setup_InvalidPort_High  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#aed6924fe568476130afc0dcb1a53a0d0">TEST</a>  (WemosServerTest, Constructor_ValidPort)</dt>
+<dd><a class="anchor" id="_test000005"></a>WemosServerTest.Constructor_ValidPort  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a2924a383290b3a32be3494928dd5e928">TEST</a>  (WemosServerTest, Constructor_InvalidPort_Negative)</dt>
+<dd><a class="anchor" id="_test000006"></a>WemosServerTest.Constructor_InvalidPort_Negative  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a9b22ce989064cc2fd2d9e58aaecc2257">TEST</a>  (WemosServerTest, Constructor_InvalidPort_Zero)</dt>
+<dd><a class="anchor" id="_test000007"></a>WemosServerTest.Constructor_InvalidPort_Zero  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a3edbcfbecc44c6f121b74c3165d8de92">TEST</a>  (WemosServerTest, Constructor_InvalidPort_High)</dt>
+<dd><a class="anchor" id="_test000008"></a>WemosServerTest.Constructor_InvalidPort_High  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a41c83ef4be321e48ee5a19dc6cd64492">TEST</a>  (WemosServerTest, Constructor_ValidHubIPAddress)</dt>
+<dd><a class="anchor" id="_test000009"></a>WemosServerTest.Constructor_ValidHubIPAddress  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a296f67e57eb5b691e6ef9da149e8f332">TEST</a>  (WemosServerTest, Constructor_InvalidHubIPAddress)</dt>
+<dd><a class="anchor" id="_test000010"></a>WemosServerTest.Constructor_InvalidHubIPAddress  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a9d1bc3745509238ddddd8eca5408354c">TEST</a>  (WemosServerTest, Constructor_ValidHubPort)</dt>
+<dd><a class="anchor" id="_test000011"></a>WemosServerTest.Constructor_ValidHubPort  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a68e47aa40c15fbd43522bddd1c0d849c">TEST</a>  (WemosServerTest, Constructor_InvalidHubPort_Negative)</dt>
+<dd><a class="anchor" id="_test000012"></a>WemosServerTest.Constructor_InvalidHubPort_Negative  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a96c0b898f2ee2fb10d12123647178d5b">TEST</a>  (WemosServerTest, Constructor_InvalidHubPort_High)</dt>
+<dd><a class="anchor" id="_test000013"></a>WemosServerTest.Constructor_InvalidHubPort_High  </dd>
+<dt>Member <a class="el" href="test__wemosserver_8cpp.html#a0314134e20cd943f9b0ac10feac55a18">TEST</a>  (WemosServerTest, Constructor_InvalidHubPort_Zero)</dt>
+<dd><a class="anchor" id="_test000014"></a>WemosServerTest.Constructror_InvalidHubPort_Zero </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

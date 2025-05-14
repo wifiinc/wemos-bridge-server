@@ -1,0 +1,15 @@
+<map id="include/slavemanager.h" name="include/slavemanager.h">
+<area shape="rect" id="Node000001" title="Header file for slavemanager.cpp." alt="" coords="317,5,495,31"/>
+<area shape="rect" id="Node000002" href="$wemosserver_8h.html" title="Header file for wemosserver.cpp." alt="" coords="128,79,300,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="363,38,246,81,244,76,361,33"/>
+<area shape="rect" id="Node000006" href="$slavemanager_8cpp.html" title="Implementation of SlaveManager class." alt="" coords="324,79,488,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="409,44,409,79,403,79,403,44"/>
+<area shape="rect" id="Node000007" href="$test__slavemanager_8cpp.html" title="Unit tests for SlaveManager class." alt="" coords="512,79,721,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="453,32,583,76,582,81,452,37"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Main entrypoint for Wemos Bridge Server application." alt="" coords="5,152,111,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="178,112,85,154,82,149,175,107"/>
+<area shape="rect" id="Node000004" href="$wemosserver_8cpp.html" title="Implementation of WemosServer class." alt="" coords="135,152,293,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="217,118,217,152,211,152,211,118"/>
+<area shape="rect" id="Node000005" href="$test__wemosserver_8cpp.html" title="Unit tests for WemosServer class." alt="" coords="317,152,521,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="261,106,387,149,385,154,259,111"/>
+</map>

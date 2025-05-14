@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]]
+  ['closeconnection_0',['closeConnection',['../class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992',1,'I2CClient']]]
 ];

@@ -1,0 +1,11 @@
+<map id="sensor_packet_humidity" name="sensor_packet_humidity">
+<area shape="rect" id="Node000001" title="Structure for humidity sensor packets." alt="" coords="81,261,253,327"/>
+<area shape="rect" id="Node000002" href="$structsensor__metadata.html" title="Structure for sensor metadata, which is always included in any packet." alt="" coords="49,133,175,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,199,111,218,116,236,121,247,117,250,111,238,106,219,105,199"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,93,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="47,71,48,90,53,108,60,120,55,122,48,110,43,91,42,71"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="145,5,204,71"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,72,148,111,143,120,138,118,143,108,160,70"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="200,133,243,199"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="211,200,194,238,191,247,186,245,190,236,206,198"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="include/wemosserver.h" name="include/wemosserver.h">
+<area shape="rect" id="Node000001" title="Header file for wemosserver.cpp." alt="" coords="128,5,300,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Main entrypoint for Wemos Bridge Server application." alt="" coords="5,79,111,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,39,85,81,82,76,175,34"/>
+<area shape="rect" id="Node000003" href="$wemosserver_8cpp.html" title="Implementation of WemosServer class." alt="" coords="135,79,293,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,44,217,79,211,79,211,44"/>
+<area shape="rect" id="Node000004" href="$test__wemosserver_8cpp.html" title="Unit tests for WemosServer class." alt="" coords="317,79,521,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="261,33,387,76,385,81,259,38"/>
+</map>

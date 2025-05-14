@@ -1,0 +1,38 @@
+<map id="tests/test_wemosserver.cpp" name="tests/test_wemosserver.cpp">
+<area shape="rect" id="Node000001" title="Unit tests for WemosServer class." alt="" coords="325,5,529,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="307,79,411,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="417,33,381,70,377,67,414,29"/>
+<area shape="rect" id="Node000003" href="$wemosserver_8h.html" title="Header file for wemosserver.cpp." alt="" coords="435,79,557,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="440,29,477,67,473,71,436,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="280,152,376,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="470,106,369,149,367,144,468,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,225,64,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="487,106,447,143,419,163,389,180,345,196,307,206,238,214,167,217,78,228,77,223,167,211,238,209,306,201,344,191,387,175,416,159,443,139,484,102"/>
+<area shape="rect" id="Node000006" href="$i2cclient_8h.html" title="Header file for i2cclient.cpp." alt="" coords="451,152,541,177"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="499,104,499,138,493,138,493,104"/>
+<area shape="rect" id="Node000013" href="$packets_8h.html" title="Header file for packets.h." alt="" coords="729,225,813,251"/>
+<area shape="poly" id="edge15_Node000003_Node000013" title=" " alt="" coords="519,102,738,217,736,221,517,107"/>
+<area shape="rect" id="Node000015" href="$slavemanager_8h.html" title="Header file for slavemanager.cpp." alt="" coords="759,152,886,177"/>
+<area shape="poly" id="edge16_Node000003_Node000015" title=" " alt="" coords="549,101,757,146,756,152,548,107"/>
+<area shape="poly" id="edge11_Node000006_Node000005" title=" " alt="" coords="452,177,432,180,334,193,257,201,178,211,78,228,77,223,177,205,256,196,334,188,432,175,451,172"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="89,225,181,251"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="452,177,195,228,194,222,451,172"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="205,225,272,251"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="455,180,286,227,284,221,454,175"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="297,225,439,251"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="477,180,402,221,400,216,474,175"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="464,225,528,251"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="499,178,499,212,493,212,493,178"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="553,225,615,251"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="512,175,561,214,557,219,508,179"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="640,225,704,251"/>
+<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="525,175,631,218,629,222,523,180"/>
+<area shape="poly" id="edge13_Node000006_Node000013" title=" " alt="" coords="541,175,716,220,715,225,539,180"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="737,299,804,324"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="773,251,773,285,768,285,768,251"/>
+<area shape="poly" id="edge19_Node000015_Node000013" title=" " alt="" coords="816,179,789,216,785,213,812,176"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="837,225,912,251"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="833,176,860,213,856,216,829,179"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="937,225,1007,251"/>
+<area shape="poly" id="edge18_Node000015_Node000017" title=" " alt="" coords="848,175,936,217,934,222,846,180"/>
+</map>

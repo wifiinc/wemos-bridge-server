@@ -1,0 +1,11 @@
+<map id="include/slavemanager.h" name="include/slavemanager.h">
+<area shape="rect" id="Node000001" title="Header file for slavemanager.cpp." alt="" coords="51,5,229,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,33,71,72,68,68,123,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,79,175,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,31,143,65,137,65,137,31"/>
+<area shape="rect" id="Node000004" href="$packets_8h.html" title="Header file for packets.h." alt="" coords="199,79,283,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="158,28,215,68,212,73,155,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="208,152,275,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="244,104,244,138,239,138,239,104"/>
+</map>

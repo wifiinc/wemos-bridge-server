@@ -1,0 +1,26 @@
+var class_i2_c_client =
+[
+    [ "DataReceiveReturn", "struct_i2_c_client_1_1_data_receive_return.html", "struct_i2_c_client_1_1_data_receive_return" ],
+    [ "I2CClient", "class_i2_c_client.html#a094903a8fc8c53f31a2591201eca24a1", null ],
+    [ "~I2CClient", "class_i2_c_client.html#a468ce4f8268ffb131f285205a94a8a80", null ],
+    [ "I2CClient", "class_i2_c_client.html#aa32e29c4a040830b82337ddb9f0b0078", null ],
+    [ "I2CClient", "class_i2_c_client.html#ad20034806347e0bf9f845dea3da4cab3", null ],
+    [ "closeConnection", "class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992", null ],
+    [ "openConnection", "class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740", null ],
+    [ "operator=", "class_i2_c_client.html#a3cf9e9d86e6e630c57e5fd4c87e9c99f", null ],
+    [ "operator=", "class_i2_c_client.html#a9ec764a84525d4e429e938e384f25d65", null ],
+    [ "receiveLoop", "class_i2_c_client.html#ad4ef73ba657dfd720c6c09f4246f3842", null ],
+    [ "retrievePacket", "class_i2_c_client.html#a5d1591cf4c646df1e6964d72eab9b5fd", null ],
+    [ "sendRawData", "class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902", null ],
+    [ "setup", "class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23", null ],
+    [ "start", "class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72", null ],
+    [ "client_fd", "class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e", null ],
+    [ "connected", "class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65", null ],
+    [ "hub_address", "class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4", null ],
+    [ "queue_condition", "class_i2_c_client.html#a58cc93601b24a3f130ff6ac78b522325", null ],
+    [ "queue_mutex", "class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c", null ],
+    [ "read_packets_queue", "class_i2_c_client.html#afffbd399f84de6e2c5cca1683dd6f1fb", null ],
+    [ "receive_mutex", "class_i2_c_client.html#a925b93c523cf1b967632a7b9e45a0ed6", null ],
+    [ "receive_thread", "class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0", null ],
+    [ "running", "class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc", null ]
+];

@@ -1,0 +1,7 @@
+<map id="sensor_header" name="sensor_header">
+<area shape="rect" id="Node000001" title="Header structure for sensor packets." alt="" coords="28,133,137,199"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,64,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="39,70,48,108,52,118,47,120,43,110,34,71"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="89,5,175,71"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,72,104,119,99,117,117,70"/>
+</map>

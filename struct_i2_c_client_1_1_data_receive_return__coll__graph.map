@@ -1,0 +1,7 @@
+<map id="I2CClient::DataReceiveReturn" name="I2CClient::DataReceiveReturn">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,133,212,199"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="31,5,101,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,70,79,109,83,117,78,119,74,110,66,72"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="125,5,177,71"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,72,127,118,122,117,138,70"/>
+</map>
