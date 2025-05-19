@@ -57,6 +57,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
             uint8_t data_length = pkt_ptr->header.length;
             PacketType ptype = pkt_ptr->header.ptype;
             SensorType s_type = pkt_ptr->data.generic.metadata.sensor_type;
+            uint8_t s_id = pkt_ptr->data.generic.metadata.sensor_id;
 
             if (offset + data_length + sizeof(struct sensor_header) > bytes_received) {
                 printf("Incomplete packet received, discarding\n");
@@ -81,16 +82,42 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                     break;
 
                 case PacketType::DASHBOARD_GET:
-                    printf("Dashboard requested data on sensor: ID=%u, type=%u",
+                    printf("Dashboard requested data on sensor: ID=%u, type=%u\n",
                            pkt_ptr->data.generic.metadata.sensor_id,
                            pkt_ptr->data.generic.metadata.sensor_type);
 
-                    sendToDashboard(client_fd, pkt_ptr->data.generic.metadata.sensor_id);
+                    if (s_id < 128) {
+                        // YIPEE
+                    } else {
+                        i2c_client.sendRawData((uint8_t *)pkt_ptr,
+                                               sizeof(struct sensor_header) + data_length);
+
+                        printf("incoming data: ");
+                        for (int i = 0; i < sizeof(struct sensor_header) + pkt_ptr->header.length;
+                             ++i) {
+                            printf("%02X ", ((uint8_t *)(pkt_ptr))[i]);
+                        }
+                        printf("\n");
+
+                        struct sensor_packet ret_pkt = i2c_client.retrievePacket(true);
+
+                        printf("sending bask to dashboard :D\n");
+                        sendToDashboard(client_fd, pkt_ptr,
+                                        sizeof(struct sensor_header) + data_length);
+                    }
                     break;
 
                 case PacketType::DASHBOARD_POST:
+                    printf("Dashboard posting data on sensor: ID=%u, type=%u\n",
+                           pkt_ptr->data.generic.metadata.sensor_id,
+                           pkt_ptr->data.generic.metadata.sensor_type);
                     // the dashboard is trying to update something
-
+                    if (s_id < 128) {
+                        // blabla
+                    } else {
+                        i2c_client.sendRawData((uint8_t *)pkt_ptr,
+                                               sizeof(struct sensor_header) + data_length);
+                    }
                     break;
 
                 default:
@@ -172,15 +199,10 @@ void WemosServer::processSensorData(const struct sensor_packet *packet) {
     }
 }
 
-void WemosServer::sendToDashboard(int dashboard_fd, uint8_t slave_id) {
+void WemosServer::sendToDashboard(int dashboard_fd, struct sensor_packet *pkt_ptr, size_t len) {
     struct sensor_packet sensor_data;
 
-    sensor_data = slave_manager.getSlaveDevice(slave_id).sensor_data;
-    sensor_data.header.ptype = PacketType::DASHBOARD_RESPONSE;
-
-    int length_to_send = sensor_data.header.length + sizeof(struct sensor_header);
-
-    send(dashboard_fd, &sensor_data, length_to_send, 0);
+    send(dashboard_fd, pkt_ptr, len, 0);
 }
 // private methods end here
 

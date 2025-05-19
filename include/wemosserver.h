@@ -32,7 +32,7 @@ class WemosServer {
 
     void processSensorData(const struct sensor_packet *data);
 
-    void sendToDashboard(int dashboard_fd, uint8_t sensor_id);
+    void sendToDashboard(int dashboard_fd, struct sensor_packet *pkt_ptr, size_t len);
 
    public:
     /**
