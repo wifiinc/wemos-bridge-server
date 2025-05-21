@@ -1,7 +1,7 @@
 var searchData=
 [
   ['sendrawdata_0',['sendRawData',['../class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902',1,'I2CClient']]],
-  ['sendtodashboard_1',['sendToDashboard',['../class_wemos_server.html#a220c931f400e6fcb73b03c5fd108905d',1,'WemosServer']]],
+  ['sendtodashboard_1',['sendToDashboard',['../class_wemos_server.html#a6c4a574cbe3267e6e77858e0758d3895',1,'WemosServer']]],
   ['sendtoslave_2',['sendToSlave',['../class_slave_manager.html#aaf677da3492cfb1b0fd42c4cd56e748a',1,'SlaveManager']]],
   ['setup_3',['setup',['../class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23',1,'I2CClient']]],
   ['setupi2cclient_4',['setupI2cClient',['../class_wemos_server.html#a962d8f99d9304a4bde1b39fba5b092b3',1,'WemosServer']]],

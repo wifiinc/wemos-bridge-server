@@ -8,7 +8,7 @@ var class_wemos_server =
     [ "operator=", "class_wemos_server.html#a6ec12e8b7757c4b3862fd3f330a7c0af", null ],
     [ "operator=", "class_wemos_server.html#ab1f479fe71e15ccfbce4fe4489c6d271", null ],
     [ "processSensorData", "class_wemos_server.html#afccd015a3f6fcfb6daa822e28647edbf", null ],
-    [ "sendToDashboard", "class_wemos_server.html#a220c931f400e6fcb73b03c5fd108905d", null ],
+    [ "sendToDashboard", "class_wemos_server.html#a6c4a574cbe3267e6e77858e0758d3895", null ],
     [ "setupI2cClient", "class_wemos_server.html#a962d8f99d9304a4bde1b39fba5b092b3", null ],
     [ "socketSetup", "class_wemos_server.html#a4c40a6bb49c55f11e3a841a6290a5fc2", null ],
     [ "start", "class_wemos_server.html#a6d638abd6c1e2a1e1b29eac79a2f2ce9", null ],

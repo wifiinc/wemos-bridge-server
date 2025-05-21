@@ -1,7 +1,7 @@
 var searchData=
 [
   ['sendrawdata_0',['sendRawData',['../class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902',1,'I2CClient']]],
-  ['sendtodashboard_1',['sendToDashboard',['../class_wemos_server.html#a220c931f400e6fcb73b03c5fd108905d',1,'WemosServer']]],
+  ['sendtodashboard_1',['sendToDashboard',['../class_wemos_server.html#a6c4a574cbe3267e6e77858e0758d3895',1,'WemosServer']]],
   ['sendtoslave_2',['sendToSlave',['../class_slave_manager.html#aaf677da3492cfb1b0fd42c4cd56e748a',1,'SlaveManager']]],
   ['sensor_5fdata_3',['sensor_data',['../unionsensor__packet_1_1sensor__data.html',1,'sensor_packet::sensor_data'],['../unionsensor__data.html',1,'sensor_data'],['../struct_slave_device.html#a8228c883435f8c124fd0e2046e971d9d',1,'SlaveDevice::sensor_data']]],
   ['sensor_5fheader_4',['sensor_header',['../structsensor__header.html',1,'']]],
