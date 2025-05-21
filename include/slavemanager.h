@@ -25,8 +25,11 @@
  * @details This structure contains the file descriptor associated with the slave device.
  */
 struct SlaveDevice {
-    int fd;
-    struct sensor_packet sensor_data;
+    int fd = -1;
+    struct sensor_packet sensor_data = {0};
+
+    bool isConnected() const;
+    void setSensorData(const struct sensor_packet &);
 };
 
 class SlaveManager {
@@ -79,7 +82,7 @@ class SlaveManager {
      * @param slave_id The ID of the slave device.
      * @return The SlaveDevice associated with the slave id.
      */
-    SlaveDevice getSlaveDevice(uint8_t slave_id) const;
+    SlaveDevice &getSlaveDevice(uint8_t slave_id);
 };
 
 #endif
