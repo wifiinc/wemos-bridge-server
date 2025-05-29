@@ -33,7 +33,7 @@
 /**
  * @brief Maximum number of clients that can be connected to the server.
  */
-#define MAX_CLIENTS 100
+#define MAX_CLIENTS 128
 
 // private methods start here
 void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_address) {
@@ -88,9 +88,8 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 
                     if (s_id < 128) {
                         // YIPEE
-                        const struct SlaveDevice &s_device =
-                            slave_manager.getSlaveDevice(pkt_ptr->data.generic.metadata.sensor_id);
-                        struct sensor_packet s_packet(s_device.sensor_data);
+                        struct sensor_packet s_packet =
+                            slave_manager.getSlaveState(pkt_ptr->data.generic.metadata.sensor_id);
                         sendToDashboard(client_fd, &s_packet,
                                         sizeof(s_packet.header) + s_packet.header.length);
                     } else {
@@ -125,6 +124,8 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                         slave_manager.sendToSlave(
                             pkt_ptr->data.generic.metadata.sensor_id, (uint8_t *)pkt_ptr,
                             sizeof(struct sensor_header) + pkt_ptr->header.length);
+                        slave_manager.updateSlaveState(pkt_ptr->data.generic.metadata.sensor_id,
+                                                       *pkt_ptr);
                     } else {
                         i2c_client.sendRawData((uint8_t *)pkt_ptr,
                                                sizeof(struct sensor_header) + data_length);
@@ -151,9 +152,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 }
 
 void WemosServer::processSensorData(const struct sensor_packet *packet) {
-    SlaveDevice &target_slave =
-        slave_manager.getSlaveDevice(packet->data.generic.metadata.sensor_id);
-    target_slave.setSensorData(*packet);
+    slave_manager.updateSlaveState(packet->data.generic.metadata.sensor_id, *packet);
 
     switch (packet->data.generic.metadata.sensor_type) {
         case SensorType::BUTTON: {
@@ -207,6 +206,22 @@ void WemosServer::processSensorData(const struct sensor_packet *packet) {
             // TODO: do humidity things
             break;
         }
+        case SensorType::LIGHT: {
+            printf("Processing light data: ID=%u, Value=%s\n",
+                   packet->data.light.metadata.sensor_id,
+                   (packet->data.light.target_state) ? "ON" : "OFF");
+
+            // TODO: do light things
+            break;
+        }
+        case SensorType::RGB_LIGHT: {
+            printf("Processing RGB light data: ID=%hhu, Values=%hhu,%hhu,%hhu\n",
+                   packet->data.light.metadata.sensor_id, packet->data.rgb_light.red_state,
+                   packet->data.rgb_light.green_state, packet->data.rgb_light.blue_state);
+
+            // TODO: do light things
+            break;
+        }
         default:
             printf("No action defined for sensor type %u\n",
                    packet->data.generic.metadata.sensor_type);
@@ -215,8 +230,6 @@ void WemosServer::processSensorData(const struct sensor_packet *packet) {
 }
 
 void WemosServer::sendToDashboard(int dashboard_fd, struct sensor_packet *pkt_ptr, size_t len) {
-    struct sensor_packet sensor_data;
-
     send(dashboard_fd, pkt_ptr, len, 0);
 }
 // private methods end here

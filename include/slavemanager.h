@@ -22,7 +22,8 @@
 
 /**
  * @brief Structure representing a slave device.
- * @details This structure contains the file descriptor associated with the slave device.
+ * @details This structure contains the file descriptor associated with the slave device, and also
+ * its current state in the form of a packet.
  */
 struct SlaveDevice {
     int fd = -1;
@@ -78,11 +79,21 @@ class SlaveManager {
     int getSlaveFD(uint8_t slave_id) const;
 
     /**
-     * @brief Gets the SlaveDevice associated with the given slave ID.
+     * @brief Updates the internal sensor_packet structure that contains the current state of the
+     * device
      * @param slave_id The ID of the slave device.
-     * @return The SlaveDevice associated with the slave id.
+     * @param packet A sensor_packet structure that represents the updated internal state of the
+     * device.
      */
-    SlaveDevice &getSlaveDevice(uint8_t slave_id);
+    void updateSlaveState(uint8_t slave_id, const struct sensor_packet &packet);
+
+    /**
+     * @brief Retrieves the internal sensor_packet structure that contains the current state of the
+     * device
+     * @param slave_id The ID of the slave device.
+     * @return The internal state of the device as a sensor_packet struct
+     */
+    struct sensor_packet getSlaveState(uint8_t slave_id);
 };
 
 #endif

@@ -15,6 +15,8 @@
 #include <cstring>
 #include <stdexcept>
 
+#include "packets.h"
+
 bool SlaveDevice::isConnected() const { return (-1 != fd); }
 void SlaveDevice::setSensorData(const struct sensor_packet& pkt) {
     memcpy(&sensor_data, &pkt, sizeof(sensor_data));
@@ -88,11 +90,10 @@ int SlaveManager::getSlaveFD(uint8_t slave_id) const {
     return slave_devices[slave_id].fd;
 }
 
-SlaveDevice& SlaveManager::getSlaveDevice(uint8_t slave_id) {
-    if (slave_id > MAX_SLAVE_ID || slave_id < 0) {
-        printf("Invalid slave ID=%u\n", slave_id);
-        throw std::invalid_argument("Invalid slave ID");
-    }
+void SlaveManager::updateSlaveState(uint8_t slave_id, const struct sensor_packet& packet) {
+    slave_devices[slave_id].setSensorData(packet);
+}
 
-    return slave_devices[slave_id];
+struct sensor_packet SlaveManager::getSlaveState(uint8_t slave_id) {
+    return slave_devices[slave_id].sensor_data;
 }
