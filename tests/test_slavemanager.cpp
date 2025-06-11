@@ -13,7 +13,6 @@ TEST(SlaveManagerTests, RegisterSlave) {
 
     EXPECT_NO_THROW(manager.registerSlave(1, fd));
     EXPECT_EQ(manager.getSlaveFD(1), fd);
-    EXPECT_EQ(manager.getSlaveDevice(1).fd, fd);
 }
 
 TEST(SlaveManagerTests, UnregisterSlave) {
@@ -25,5 +24,4 @@ TEST(SlaveManagerTests, UnregisterSlave) {
 
     EXPECT_NO_THROW(manager.unregisterSlave(1));
     EXPECT_EQ(manager.getSlaveFD(1), -1);
-    EXPECT_EQ(manager.getSlaveDevice(1).fd, -1);
 }

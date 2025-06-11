@@ -22,6 +22,7 @@ enum class SensorType : uint8_t {
     LIGHT = 6,
     MOTION = 7,
     RGB_LIGHT = 8,
+    LICHTKRANT = 9,
 };
 
 enum class PacketType : uint8_t {
@@ -153,6 +154,17 @@ struct sensor_packet_rgb_light {
     /** @brief Target state of the blue color (0-255) represented as an 8-bit integer */
     uint8_t blue_state;
 } __attribute__((packed));
+
+/**
+ * @struct sensor_packet_lichtkrant
+ * @brief structure for the lichkrant packets
+ * @details Contains the string to display on the lichtkrant
+ * @ingroupo Packets
+ */
+struct sensor_packet_lichtkrant {
+    struct sensor_metadata metadata;
+    char text[16];
+} __attribute__((packed));
 // --- End Structures ---
 
 /**
@@ -232,6 +244,7 @@ struct sensor_packet {
         struct sensor_packet_humidity humidity;
         struct sensor_packet_light light;
         struct sensor_packet_rgb_light rgb_light;
+        struct sensor_packet_lichtkrant lichtkrant;
     } data;
 } __attribute__((packed));
 

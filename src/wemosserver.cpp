@@ -7,6 +7,7 @@
  *          connections, and communicating with the I2C hub.
  * @author Daan Breur
  */
+
 #include "wemosserver.h"
 
 #include <arpa/inet.h>
@@ -16,14 +17,13 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include <cerrno>
 #include <iostream>
-#include <list>
 #include <stdexcept>
 #include <string>
 #include <thread>
 
 #include "packets.h"
+#include "slavemanager.h"
 
 /**
  * @brief Maximum data size to be read or sent over the wire.
@@ -33,7 +33,7 @@
 /**
  * @brief Maximum number of clients that can be connected to the server.
  */
-#define MAX_CLIENTS 100
+#define MAX_CLIENTS 128
 
 // private methods start here
 void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_address) {
@@ -86,8 +86,12 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                            pkt_ptr->data.generic.metadata.sensor_id,
                            pkt_ptr->data.generic.metadata.sensor_type);
 
-                    if (s_id < 128) {
+                    if (s_id > 127) {
                         // YIPEE
+                        struct sensor_packet s_packet =
+                            slave_manager.getSlaveState(pkt_ptr->data.generic.metadata.sensor_id);
+                        sendToDashboard(client_fd, &s_packet,
+                                        sizeof(s_packet.header) + s_packet.header.length);
                     } else {
                         i2c_client.sendRawData((uint8_t *)pkt_ptr,
                                                sizeof(struct sensor_header) + data_length);
@@ -98,10 +102,13 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                             printf("%02X ", ((uint8_t *)(pkt_ptr))[i]);
                         }
                         printf("\n");
+                        struct sensor_packet ret_pkt;
+                        do {
+                            ret_pkt = i2c_client.retrievePacket(true);
+                        } while (ret_pkt.data.generic.metadata.sensor_id !=
+                                 pkt_ptr->data.generic.metadata.sensor_id);
 
-                        struct sensor_packet ret_pkt = i2c_client.retrievePacket(true);
-
-                        printf("sending bask to dashboard :D\n");
+                        printf("sending back to dashboard :D\n");
                         sendToDashboard(client_fd, pkt_ptr,
                                         sizeof(struct sensor_header) + data_length);
                     }
@@ -112,8 +119,13 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                            pkt_ptr->data.generic.metadata.sensor_id,
                            pkt_ptr->data.generic.metadata.sensor_type);
                     // the dashboard is trying to update something
-                    if (s_id < 128) {
+                    if (s_id > 127) {
                         // blabla
+                        slave_manager.sendToSlave(
+                            pkt_ptr->data.generic.metadata.sensor_id, (uint8_t *)pkt_ptr,
+                            sizeof(struct sensor_header) + pkt_ptr->header.length);
+                        slave_manager.updateSlaveState(pkt_ptr->data.generic.metadata.sensor_id,
+                                                       *pkt_ptr);
                     } else {
                         i2c_client.sendRawData((uint8_t *)pkt_ptr,
                                                sizeof(struct sensor_header) + data_length);
@@ -140,58 +152,16 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 }
 
 void WemosServer::processSensorData(const struct sensor_packet *packet) {
+    slave_manager.updateSlaveState(packet->data.generic.metadata.sensor_id, *packet);
+
     switch (packet->data.generic.metadata.sensor_type) {
         case SensorType::BUTTON: {
             printf("Processing button data: ID=%u\n", packet->data.generic.metadata.sensor_id);
 
             // TODO: een tafel-knop ingedrukt
-            /*
-            if (btn->id == 0x69) {
-                toggle_led(0x50);
-                struct sensor_header header = {.length = sizeof(struct sensor_packet_light),
-                                               .type = DATA};
-                struct sensor_packet_light led_control = {
-                    .type = LIGHT, .id = 0x50, .target_state = get_led_state(0x50)};
-
-                uint8_t buffer[sizeof(struct sensor_header) + sizeof(struct sensor_packet_light)] =
-                    {0};
-                memcpy(buffer, &header, sizeof(header));
-                memcpy(buffer + sizeof(header), &led_control, sizeof(led_control));
-
-                send_to_slave(0x50, &buffer, sizeof(buffer));
-            }
-
-            if (btn->id == 0x70) {
-                toggle_led(0x55);
-                struct i2c_led_control led_control = {.led_number = 0x55,
-                                                      .led_state = get_led_state(0x55)};
-                send_to_rpi(&led_control, sizeof(led_control));
-            }
-            */
-
             break;
         }
-        case SensorType::TEMPERATURE: {
-            printf("Processing temperature data: ID=%u, Value=%.2f\n",
-                   packet->data.temperature.metadata.sensor_id, packet->data.temperature.value);
-
-            // TODO: do temperature things
-            break;
-        }
-        case SensorType::CO2: {
-            printf("Processing CO2 data: ID=%u, Value=%u\n", packet->data.co2.metadata.sensor_id,
-                   packet->data.co2.value);
-
-            // TODO: do CO2 things
-            break;
-        }
-        case SensorType::HUMIDITY: {
-            printf("Processing humidity data: ID=%u, Value=%.2f\n",
-                   packet->data.humidity.metadata.sensor_id, packet->data.humidity.value);
-
-            // TODO: do humidity things
-            break;
-        }
+        
         default:
             printf("No action defined for sensor type %u\n",
                    packet->data.generic.metadata.sensor_type);
@@ -200,8 +170,6 @@ void WemosServer::processSensorData(const struct sensor_packet *packet) {
 }
 
 void WemosServer::sendToDashboard(int dashboard_fd, struct sensor_packet *pkt_ptr, size_t len) {
-    struct sensor_packet sensor_data;
-
     send(dashboard_fd, pkt_ptr, len, 0);
 }
 // private methods end here

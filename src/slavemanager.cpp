@@ -12,7 +12,15 @@
 #include <unistd.h>
 
 #include <cstdio>
+#include <cstring>
 #include <stdexcept>
+
+#include "packets.h"
+
+bool SlaveDevice::isConnected() const { return (-1 != fd); }
+void SlaveDevice::setSensorData(const struct sensor_packet& pkt) {
+    memcpy(&sensor_data, &pkt, sizeof(sensor_data));
+}
 
 SlaveManager::SlaveManager() {
     for (int i = 0; i <= MAX_SLAVE_ID; ++i) {
@@ -38,6 +46,7 @@ void SlaveManager::registerSlave(uint8_t slave_id, int fd) {
     printf("Registering new slave ID=%u\n", slave_id);
 
     slave_devices[slave_id].fd = fd;
+    memset(&slave_devices[slave_id].sensor_data, 0, sizeof(slave_devices[slave_id].sensor_data));
 }
 
 void SlaveManager::unregisterSlave(uint8_t slave_id) {
@@ -51,7 +60,7 @@ void SlaveManager::unregisterSlave(uint8_t slave_id) {
     slave_devices[slave_id].fd = -1;
 }
 
-int SlaveManager::sendToSlave(uint8_t slave_id, const void *data, size_t length) {
+int SlaveManager::sendToSlave(uint8_t slave_id, const void* data, size_t length) {
     if (slave_id > MAX_SLAVE_ID || slave_id < 0) {
         printf("Invalid slave ID=%u\n", slave_id);
         throw std::invalid_argument("Invalid slave ID");
@@ -81,11 +90,10 @@ int SlaveManager::getSlaveFD(uint8_t slave_id) const {
     return slave_devices[slave_id].fd;
 }
 
-SlaveDevice SlaveManager::getSlaveDevice(uint8_t slave_id) const {
-    if (slave_id > MAX_SLAVE_ID || slave_id < 0) {
-        printf("Invalid slave ID=%u\n", slave_id);
-        throw std::invalid_argument("Invalid slave ID");
-    }
+void SlaveManager::updateSlaveState(uint8_t slave_id, const struct sensor_packet& packet) {
+    slave_devices[slave_id].setSensorData(packet);
+}
 
-    return slave_devices[slave_id];
+struct sensor_packet SlaveManager::getSlaveState(uint8_t slave_id) {
+    return slave_devices[slave_id].sensor_data;
 }
