@@ -159,69 +159,9 @@ void WemosServer::processSensorData(const struct sensor_packet *packet) {
             printf("Processing button data: ID=%u\n", packet->data.generic.metadata.sensor_id);
 
             // TODO: een tafel-knop ingedrukt
-            /*
-            if (btn->id == 0x69) {
-                toggle_led(0x50);
-                struct sensor_header header = {.length = sizeof(struct sensor_packet_light),
-                                               .type = DATA};
-                struct sensor_packet_light led_control = {
-                    .type = LIGHT, .id = 0x50, .target_state = get_led_state(0x50)};
-
-                uint8_t buffer[sizeof(struct sensor_header) + sizeof(struct sensor_packet_light)] =
-                    {0};
-                memcpy(buffer, &header, sizeof(header));
-                memcpy(buffer + sizeof(header), &led_control, sizeof(led_control));
-
-                send_to_slave(0x50, &buffer, sizeof(buffer));
-            }
-
-            if (btn->id == 0x70) {
-                toggle_led(0x55);
-                struct i2c_led_control led_control = {.led_number = 0x55,
-                                                      .led_state = get_led_state(0x55)};
-                send_to_rpi(&led_control, sizeof(led_control));
-            }
-            */
-
             break;
         }
-        case SensorType::TEMPERATURE: {
-            printf("Processing temperature data: ID=%u, Value=%.2f\n",
-                   packet->data.temperature.metadata.sensor_id, packet->data.temperature.value);
-
-            // TODO: do temperature things
-            break;
-        }
-        case SensorType::CO2: {
-            printf("Processing CO2 data: ID=%u, Value=%u\n", packet->data.co2.metadata.sensor_id,
-                   packet->data.co2.value);
-
-            // TODO: do CO2 things
-            break;
-        }
-        case SensorType::HUMIDITY: {
-            printf("Processing humidity data: ID=%u, Value=%.2f\n",
-                   packet->data.humidity.metadata.sensor_id, packet->data.humidity.value);
-
-            // TODO: do humidity things
-            break;
-        }
-        case SensorType::LIGHT: {
-            printf("Processing light data: ID=%u, Value=%s\n",
-                   packet->data.light.metadata.sensor_id,
-                   (packet->data.light.target_state) ? "ON" : "OFF");
-
-            // TODO: do light things
-            break;
-        }
-        case SensorType::RGB_LIGHT: {
-            printf("Processing RGB light data: ID=%hhu, Values=%hhu,%hhu,%hhu\n",
-                   packet->data.light.metadata.sensor_id, packet->data.rgb_light.red_state,
-                   packet->data.rgb_light.green_state, packet->data.rgb_light.blue_state);
-
-            // TODO: do light things
-            break;
-        }
+        
         default:
             printf("No action defined for sensor type %u\n",
                    packet->data.generic.metadata.sensor_type);
