@@ -86,7 +86,7 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
                            pkt_ptr->data.generic.metadata.sensor_id,
                            pkt_ptr->data.generic.metadata.sensor_type);
 
-                    if (s_id < 128) {
+                    if (s_id > 127) {
                         // YIPEE
                         struct sensor_packet s_packet =
                             slave_manager.getSlaveState(pkt_ptr->data.generic.metadata.sensor_id);
