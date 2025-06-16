@@ -3,6 +3,8 @@
  * @brief Main entrypoint for Wemos Bridge Server application.
  */
 
+#include <unistd.h>
+
 #include <atomic>
 #include <csignal>
 #include <iostream>
@@ -10,7 +12,7 @@
 #include "wemosserver.h"
 
 #define SERVER_PORT 5000
-#define I2C_HUB_IP "10.0.0.3"
+#define I2C_HUB_IP "192.168.73.245"
 #define I2C_HUB_PORT 5000
 
 std::atomic<bool> global_shutdown_flag(false);
@@ -30,6 +32,9 @@ int main() {
     // signal(SIGTERM, signalHandler);
 
     WemosServer server(SERVER_PORT, I2C_HUB_IP, I2C_HUB_PORT);
+
+    sleep(1);
+
     server.start();
 
     return 0;
