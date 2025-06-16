@@ -36,7 +36,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Wemos Bridge Server
-   &#160;<span id="projectnumber">commit-7ce2834</span>
+   &#160;<span id="projectnumber">commit-d762272</span>
    </div>
    <div id="projectbrief">Better than any software HHS has ever made</div>
   </td>
@@ -107,8 +107,8 @@ $(document).ready(function(){initNavTree('class_slave_manager.html',''); initRes
 
 <p>This is the complete list of members for <a class="el" href="class_slave_manager.html">SlaveManager</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#a02678480c44eabc3e321d00429c2b2a6">getSlaveDevice</a>(uint8_t slave_id) const</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#a2f45be5705d97edbfb7782e0adb8afac">getSlaveFD</a>(uint8_t slave_id) const</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#a2f45be5705d97edbfb7782e0adb8afac">getSlaveFD</a>(uint8_t slave_id) const</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#ab16f9998384f28210a35ae4b39733638">getSlaveState</a>(uint8_t slave_id)</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#a8e11172c936e0317ce304aef72dac51d">operator=</a>(const SlaveManager &amp;)=delete</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#adbae5c5f22e9811777cbab49e9ddca0e">operator=</a>(SlaveManager &amp;&amp;)=delete</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#a6c6059968465e058512f6d9b4242dae2">registerSlave</a>(uint8_t slave_id, int fd)</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
@@ -118,7 +118,8 @@ $(document).ready(function(){initNavTree('class_slave_manager.html',''); initRes
   <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#afb8d0c5b0071d715444dcd2206c52cb8">SlaveManager</a>(const SlaveManager &amp;)=delete</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#a034d61d9c750dfdfab55b288bde26b18">SlaveManager</a>(SlaveManager &amp;&amp;)=delete</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#a4bcf6d56c4dc9f85d9e5405b4cb3bbd5">unregisterSlave</a>(uint8_t slave_id)</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#ac68f099135fc86dc1efa2893c54cbbfa">~SlaveManager</a>()</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_slave_manager.html#a915e65b898c9f6dd653f6a4f7fb887ab">updateSlaveState</a>(uint8_t slave_id, const struct sensor_packet &amp;packet)</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_slave_manager.html#ac68f099135fc86dc1efa2893c54cbbfa">~SlaveManager</a>()</td><td class="entry"><a class="el" href="class_slave_manager.html">SlaveManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

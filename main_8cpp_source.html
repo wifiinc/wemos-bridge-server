@@ -36,7 +36,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Wemos Bridge Server
-   &#160;<span id="projectnumber">commit-7ce2834</span>
+   &#160;<span id="projectnumber">commit-d762272</span>
    </div>
    <div id="projectbrief">Better than any software HHS has ever made</div>
   </td>
@@ -110,49 +110,54 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;csignal&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="wemosserver_8h.html">wemosserver.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;csignal&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">   12</a></span><span class="preprocessor">#define SERVER_PORT 5000</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">   13</a></span><span class="preprocessor">#define I2C_HUB_IP &quot;10.0.0.3&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">   14</a></span><span class="preprocessor">#define I2C_HUB_PORT 5000</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">   16</a></span>std::atomic&lt;bool&gt; <a class="code hl_function" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">global_shutdown_flag</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="wemosserver_8h.html">wemosserver.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">   14</a></span><span class="preprocessor">#define SERVER_PORT 5000</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">   15</a></span><span class="preprocessor">#define I2C_HUB_IP &quot;192.168.73.245&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">   16</a></span><span class="preprocessor">#define I2C_HUB_PORT 5000</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">   18</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">signalHandler</a>(<span class="keywordtype">int</span> signum) {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Interrupt signal (&quot;</span> &lt;&lt; signum &lt;&lt; <span class="stringliteral">&quot;) received.\n&quot;</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">if</span> (signum == SIGINT || signum == SIGTERM) {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_function" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">global_shutdown_flag</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">   18</a></span>std::atomic&lt;bool&gt; <a class="code hl_function" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">global_shutdown_flag</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">signalHandler</a>(<span class="keywordtype">int</span> signum) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Interrupt signal (&quot;</span> &lt;&lt; signum &lt;&lt; <span class="stringliteral">&quot;) received.\n&quot;</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">if</span> (signum == SIGINT || signum == SIGTERM) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_function" href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">global_shutdown_flag</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
 </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   25</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    setbuf(stdout, NULL);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Starting Wemos Bridge on port &quot;</span> &lt;&lt; <a class="code hl_define" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// signal(SIGINT, signalHandler);</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// signal(SIGTERM, signalHandler);</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="class_wemos_server.html">WemosServer</a> server(<a class="code hl_define" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a>, <a class="code hl_define" href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">I2C_HUB_IP</a>, <a class="code hl_define" href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">I2C_HUB_PORT</a>);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    server.<a class="code hl_function" href="class_wemos_server.html#a6d638abd6c1e2a1e1b29eac79a2f2ce9">start</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   27</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    setbuf(stdout, NULL);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Starting Wemos Bridge on port &quot;</span> &lt;&lt; <a class="code hl_define" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// signal(SIGINT, signalHandler);</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// signal(SIGTERM, signalHandler);</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="class_wemos_server.html">WemosServer</a> server(<a class="code hl_define" href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a>, <a class="code hl_define" href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">I2C_HUB_IP</a>, <a class="code hl_define" href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">I2C_HUB_PORT</a>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    sleep(1);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    server.<a class="code hl_function" href="class_wemos_server.html#a6d638abd6c1e2a1e1b29eac79a2f2ce9">start</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 </div>
 <div class="ttc" id="aclass_wemos_server_html"><div class="ttname"><a href="class_wemos_server.html">WemosServer</a></div><div class="ttdef"><b>Definition</b> <a href="wemosserver_8h_source.html#l00020">wemosserver.h:20</a></div></div>
-<div class="ttc" id="aclass_wemos_server_html_a6d638abd6c1e2a1e1b29eac79a2f2ce9"><div class="ttname"><a href="class_wemos_server.html#a6d638abd6c1e2a1e1b29eac79a2f2ce9">WemosServer::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition</b> <a href="wemosserver_8cpp_source.html#l00261">wemosserver.cpp:261</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a80045e23b9482b6f3cc2a7f89885b3e0"><div class="ttname"><a href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">I2C_HUB_IP</a></div><div class="ttdeci">#define I2C_HUB_IP</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00013">main.cpp:13</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a8ee3282bc313e547dbbb8d4f4010db61"><div class="ttname"><a href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">signalHandler</a></div><div class="ttdeci">void signalHandler(int signum)</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
+<div class="ttc" id="aclass_wemos_server_html_a6d638abd6c1e2a1e1b29eac79a2f2ce9"><div class="ttname"><a href="class_wemos_server.html#a6d638abd6c1e2a1e1b29eac79a2f2ce9">WemosServer::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition</b> <a href="wemosserver_8cpp_source.html#l00229">wemosserver.cpp:229</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a80045e23b9482b6f3cc2a7f89885b3e0"><div class="ttname"><a href="main_8cpp.html#a80045e23b9482b6f3cc2a7f89885b3e0">I2C_HUB_IP</a></div><div class="ttdeci">#define I2C_HUB_IP</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00015">main.cpp:15</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a8ee3282bc313e547dbbb8d4f4010db61"><div class="ttname"><a href="main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61">signalHandler</a></div><div class="ttdeci">void signalHandler(int signum)</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00020">main.cpp:20</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a9b50b39630a253c5fabe237d513d6d9c"><div class="ttname"><a href="main_8cpp.html#a9b50b39630a253c5fabe237d513d6d9c">global_shutdown_flag</a></div><div class="ttdeci">std::atomic&lt; bool &gt; global_shutdown_flag(false)</div></div>
-<div class="ttc" id="amain_8cpp_html_ab2ffae385b36dcc695c25da0fbb32486"><div class="ttname"><a href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">I2C_HUB_PORT</a></div><div class="ttdeci">#define I2C_HUB_PORT</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00014">main.cpp:14</a></div></div>
-<div class="ttc" id="amain_8cpp_html_ac42367fe5c999ec6650de83e9d72fe8c"><div class="ttname"><a href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a></div><div class="ttdeci">#define SERVER_PORT</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00012">main.cpp:12</a></div></div>
-<div class="ttc" id="amain_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00025">main.cpp:25</a></div></div>
+<div class="ttc" id="amain_8cpp_html_ab2ffae385b36dcc695c25da0fbb32486"><div class="ttname"><a href="main_8cpp.html#ab2ffae385b36dcc695c25da0fbb32486">I2C_HUB_PORT</a></div><div class="ttdeci">#define I2C_HUB_PORT</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00016">main.cpp:16</a></div></div>
+<div class="ttc" id="amain_8cpp_html_ac42367fe5c999ec6650de83e9d72fe8c"><div class="ttname"><a href="main_8cpp.html#ac42367fe5c999ec6650de83e9d72fe8c">SERVER_PORT</a></div><div class="ttdeci">#define SERVER_PORT</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00014">main.cpp:14</a></div></div>
+<div class="ttc" id="amain_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00027">main.cpp:27</a></div></div>
 <div class="ttc" id="awemosserver_8h_html"><div class="ttname"><a href="wemosserver_8h.html">wemosserver.h</a></div><div class="ttdoc">Header file for wemosserver.cpp.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

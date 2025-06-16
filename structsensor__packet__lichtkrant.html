@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wemos Bridge Server: sensor_packet_light Struct Reference</title>
+<title>Wemos Bridge Server: sensor_packet_lichtkrant Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -75,7 +75,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structsensor__packet__light.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structsensor__packet__lichtkrant.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -103,76 +103,74 @@ $(document).ready(function(){initNavTree('structsensor__packet__light.html','');
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structsensor__packet__light-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">sensor_packet_light Struct Reference<div class="ingroups"><a class="el" href="group___packets.html">Packets</a></div></div></div>
+<a href="structsensor__packet__lichtkrant-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">sensor_packet_lichtkrant Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Structure for light sensor packets.  
- <a href="structsensor__packet__light.html#details">More...</a></p>
+<p>structure for the lichkrant packets  
+ <a href="structsensor__packet__lichtkrant.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="packets_8h_source.html">packets.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for sensor_packet_light:</div>
+Collaboration diagram for sensor_packet_lichtkrant:</div>
 <div class="dyncontent">
-<div class="center"><img src="structsensor__packet__light__coll__graph.png" border="0" usemap="#asensor__packet__light_coll__map" alt="Collaboration graph"/></div>
-<map name="asensor__packet__light_coll__map" id="asensor__packet__light_coll__map">
-<area shape="rect" title="Structure for light sensor packets." alt="" coords="145,261,287,327"/>
-<area shape="rect" href="structsensor__metadata.html" title="Structure for sensor metadata, which is always included in any packet." alt="" coords="97,133,223,199"/>
-<area shape="poly" title=" " alt="" coords="166,198,177,236,182,246,177,248,172,238,161,200"/>
+<div class="center"><img src="structsensor__packet__lichtkrant__coll__graph.png" border="0" usemap="#asensor__packet__lichtkrant_coll__map" alt="Collaboration graph"/></div>
+<map name="asensor__packet__lichtkrant_coll__map" id="asensor__packet__lichtkrant_coll__map">
+<area shape="rect" title="structure for the lichkrant packets" alt="" coords="79,261,255,327"/>
+<area shape="rect" href="structsensor__metadata.html" title="Structure for sensor metadata, which is always included in any packet." alt="" coords="49,133,175,199"/>
+<area shape="poly" title=" " alt="" coords="110,199,111,218,116,236,121,247,117,250,111,238,106,219,105,199"/>
 <area shape="rect" title=" " alt="" coords="5,5,93,71"/>
-<area shape="poly" title=" " alt="" coords="56,70,63,90,73,108,86,122,82,125,69,111,58,92,51,72"/>
-<area shape="rect" title=" " alt="" coords="193,5,252,71"/>
-<area shape="poly" title=" " alt="" coords="246,70,256,94,265,134,269,166,266,199,256,238,252,248,247,246,251,237,261,198,264,166,260,135,251,95,241,72"/>
-<area shape="poly" title=" " alt="" coords="195,71,178,96,170,118,165,117,174,93,191,68"/>
+<area shape="poly" title=" " alt="" coords="47,71,48,90,53,108,60,120,55,122,48,110,43,91,42,71"/>
+<area shape="rect" title=" " alt="" coords="145,5,204,71"/>
+<area shape="poly" title=" " alt="" coords="165,72,148,111,143,120,138,118,143,108,160,70"/>
+<area shape="rect" title=" " alt="" coords="200,133,243,199"/>
+<area shape="poly" title=" " alt="" coords="211,200,194,238,191,247,186,245,190,236,206,198"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab835cce0f7e9756f18201ddc157ac0b0" id="r_ab835cce0f7e9756f18201ddc157ac0b0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsensor__metadata.html">sensor_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__packet__light.html#ab835cce0f7e9756f18201ddc157ac0b0">metadata</a></td></tr>
-<tr class="separator:ab835cce0f7e9756f18201ddc157ac0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadd7c338a5910c4a9d155db49e0d238f" id="r_aadd7c338a5910c4a9d155db49e0d238f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__packet__light.html#aadd7c338a5910c4a9d155db49e0d238f">target_state</a></td></tr>
-<tr class="memdesc:aadd7c338a5910c4a9d155db49e0d238f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target state of the light (on 1/off 0) represented as a boolean value.  <br /></td></tr>
-<tr class="separator:aadd7c338a5910c4a9d155db49e0d238f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1318de6005cda13da1531149a5bcf8" id="r_a8f1318de6005cda13da1531149a5bcf8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsensor__metadata.html">sensor_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__packet__lichtkrant.html#a8f1318de6005cda13da1531149a5bcf8">metadata</a></td></tr>
+<tr class="separator:a8f1318de6005cda13da1531149a5bcf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac43825be22d7c7f778133efecdb2bdd" id="r_aac43825be22d7c7f778133efecdb2bdd"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__packet__lichtkrant.html#aac43825be22d7c7f778133efecdb2bdd">text</a> [16]</td></tr>
+<tr class="separator:aac43825be22d7c7f778133efecdb2bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Structure for light sensor packets. </p>
-<p>This structure contains the type, ID, and target state of the light/led. This structure is used for light control packets sent to the light/led. </p>
+<div class="textblock"><p>structure for the lichkrant packets </p>
+<p>Contains the string to display on the lichtkrant @ingroupo Packets </p>
 
-<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00134">134</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00164">164</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab835cce0f7e9756f18201ddc157ac0b0" name="ab835cce0f7e9756f18201ddc157ac0b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab835cce0f7e9756f18201ddc157ac0b0">&#9670;&#160;</a></span>metadata</h2>
+<a id="a8f1318de6005cda13da1531149a5bcf8" name="a8f1318de6005cda13da1531149a5bcf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1318de6005cda13da1531149a5bcf8">&#9670;&#160;</a></span>metadata</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structsensor__metadata.html">sensor_metadata</a> sensor_packet_light::metadata</td>
+          <td class="memname">struct <a class="el" href="structsensor__metadata.html">sensor_metadata</a> sensor_packet_lichtkrant::metadata</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00135">135</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00165">165</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
 
 </div>
 </div>
-<a id="aadd7c338a5910c4a9d155db49e0d238f" name="aadd7c338a5910c4a9d155db49e0d238f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadd7c338a5910c4a9d155db49e0d238f">&#9670;&#160;</a></span>target_state</h2>
+<a id="aac43825be22d7c7f778133efecdb2bdd" name="aac43825be22d7c7f778133efecdb2bdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac43825be22d7c7f778133efecdb2bdd">&#9670;&#160;</a></span>text</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t sensor_packet_light::target_state</td>
+          <td class="memname">char sensor_packet_lichtkrant::text[16]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Target state of the light (on 1/off 0) represented as a boolean value. </p>
-
-<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00137">137</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="packets_8h_source.html#l00166">166</a> of file <a class="el" href="packets_8h_source.html">packets.h</a>.</p>
 
 </div>
 </div>
@@ -184,7 +182,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structsensor__packet__light.html">sensor_packet_light</a></li>
+    <li class="navelem"><a class="el" href="structsensor__packet__lichtkrant.html">sensor_packet_lichtkrant</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -36,7 +36,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Wemos Bridge Server
-   &#160;<span id="projectnumber">commit-7ce2834</span>
+   &#160;<span id="projectnumber">commit-d762272</span>
    </div>
    <div id="projectbrief">Better than any software HHS has ever made</div>
   </td>
@@ -116,73 +116,69 @@ $(document).ready(function(){initNavTree('wemosserver_8cpp.html',''); initResiza
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;sys/socket.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;cerrno&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;list&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &quot;<a class="el" href="packets_8h_source.html">packets.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="slavemanager_8h_source.html">slavemanager.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for wemosserver.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="wemosserver_8cpp__incl.png" border="0" usemap="#asrc_2wemosserver_8cpp" alt=""/></div>
 <map name="asrc_2wemosserver_8cpp" id="asrc_2wemosserver_8cpp">
-<area shape="rect" title="Implementation of WemosServer class." alt="" coords="767,5,926,31"/>
-<area shape="rect" href="wemosserver_8h.html" title="Header file for wemosserver.cpp." alt="" coords="231,79,353,104"/>
-<area shape="poly" title=" " alt="" coords="767,32,374,81,367,82,366,77,373,76,767,26"/>
-<area shape="rect" title=" " alt="" coords="5,152,101,177"/>
-<area shape="poly" title=" " alt="" coords="767,26,477,45,328,61,221,81,182,95,145,112,83,147,81,142,143,107,180,90,219,76,327,56,477,40,767,20"/>
-<area shape="rect" title=" " alt="" coords="312,225,371,251"/>
-<area shape="poly" title=" " alt="" coords="791,33,710,53,621,81,544,114,471,154,369,220,367,215,468,150,542,109,619,76,709,48,790,28"/>
-<area shape="rect" title=" " alt="" coords="829,225,921,251"/>
-<area shape="poly" title=" " alt="" coords="775,33,694,53,662,66,642,80,628,105,623,128,627,151,642,175,705,195,816,221,815,226,704,200,638,179,622,153,617,128,623,103,638,77,659,61,693,48,773,28"/>
-<area shape="rect" title=" " alt="" coords="945,225,1009,251"/>
-<area shape="poly" title=" " alt="" coords="772,33,733,44,700,59,689,68,683,78,682,90,688,103,703,119,727,135,792,168,867,198,933,220,931,225,865,203,790,173,724,140,699,123,683,105,677,90,678,77,685,65,698,55,731,39,771,28"/>
-<area shape="rect" href="packets_8h.html" title="Header file for packets.h." alt="" coords="203,225,287,251"/>
-<area shape="poly" title=" " alt="" coords="768,32,665,51,554,81,473,114,395,152,276,220,274,216,393,148,471,109,552,76,664,46,767,27"/>
-<area shape="rect" title=" " alt="" coords="697,79,858,104"/>
-<area shape="poly" title=" " alt="" coords="837,33,800,71,796,67,833,29"/>
-<area shape="rect" title=" " alt="" coords="882,79,953,104"/>
-<area shape="poly" title=" " alt="" coords="860,29,898,67,894,71,856,33"/>
-<area shape="rect" title=" " alt="" coords="977,79,1079,104"/>
-<area shape="poly" title=" " alt="" coords="877,28,987,71,985,76,875,33"/>
-<area shape="rect" title=" " alt="" coords="1104,79,1179,104"/>
-<area shape="poly" title=" " alt="" coords="895,28,1091,75,1090,80,893,33"/>
-<area shape="rect" title=" " alt="" coords="1203,79,1266,104"/>
-<area shape="poly" title=" " alt="" coords="924,28,1045,48,1190,76,1189,81,1044,53,923,33"/>
-<area shape="rect" title=" " alt="" coords="1291,79,1371,104"/>
-<area shape="poly" title=" " alt="" coords="927,26,1085,46,1277,76,1277,81,1084,51,926,31"/>
-<area shape="rect" title=" " alt="" coords="1395,79,1437,104"/>
-<area shape="poly" title=" " alt="" coords="926,20,1130,37,1254,53,1382,76,1381,82,1253,58,1129,42,926,25"/>
-<area shape="rect" title=" " alt="" coords="1462,79,1549,104"/>
-<area shape="poly" title=" " alt="" coords="927,22,1157,41,1301,57,1449,76,1448,81,1300,62,1156,47,926,27"/>
-<area shape="poly" title=" " alt="" coords="254,107,106,151,104,145,253,101"/>
-<area shape="poly" title=" " alt="" coords="299,104,336,212,331,213,294,105"/>
-<area shape="rect" href="i2cclient_8h.html" title="Header file for i2cclient.cpp." alt="" coords="481,152,570,177"/>
-<area shape="poly" title=" " alt="" coords="330,101,475,145,474,151,329,107"/>
-<area shape="poly" title=" " alt="" coords="291,105,268,178,256,213,251,212,263,177,286,103"/>
-<area shape="rect" href="slavemanager_8h.html" title="Header file for slavemanager.cpp." alt="" coords="126,152,253,177"/>
-<area shape="poly" title=" " alt="" coords="277,106,219,146,216,142,274,102"/>
-<area shape="poly" title=" " alt="" coords="497,180,385,223,383,218,495,175"/>
-<area shape="poly" title=" " alt="" coords="571,172,815,222,814,227,570,178"/>
-<area shape="rect" title=" " alt="" coords="395,225,461,251"/>
-<area shape="poly" title=" " alt="" coords="511,180,457,219,454,215,508,175"/>
-<area shape="rect" title=" " alt="" coords="486,225,629,251"/>
-<area shape="poly" title=" " alt="" coords="533,177,549,212,544,214,528,179"/>
-<area shape="rect" title=" " alt="" coords="653,225,717,251"/>
-<area shape="poly" title=" " alt="" coords="552,175,648,217,646,222,550,180"/>
-<area shape="rect" title=" " alt="" coords="742,225,805,251"/>
-<area shape="poly" title=" " alt="" coords="566,175,730,221,728,227,564,180"/>
-<area shape="poly" title=" " alt="" coords="571,168,727,188,932,223,931,228,726,194,570,174"/>
-<area shape="poly" title=" " alt="" coords="481,180,301,225,300,220,480,175"/>
-<area shape="rect" title=" " alt="" coords="212,299,279,324"/>
-<area shape="poly" title=" " alt="" coords="248,251,248,285,243,285,243,251"/>
-<area shape="poly" title=" " alt="" coords="201,176,230,213,226,216,196,179"/>
-<area shape="rect" title=" " alt="" coords="9,225,84,251"/>
-<area shape="poly" title=" " alt="" coords="168,180,83,221,81,217,165,175"/>
-<area shape="rect" title=" " alt="" coords="109,225,179,251"/>
-<area shape="poly" title=" " alt="" coords="184,179,161,215,156,212,180,176"/>
+<area shape="rect" title="Implementation of WemosServer class." alt="" coords="634,5,793,31"/>
+<area shape="rect" href="wemosserver_8h.html" title="Header file for wemosserver.cpp." alt="" coords="427,79,549,104"/>
+<area shape="poly" title=" " alt="" coords="678,33,538,77,537,72,676,28"/>
+<area shape="rect" title=" " alt="" coords="280,152,376,177"/>
+<area shape="poly" title=" " alt="" coords="634,25,583,31,527,42,470,58,416,81,377,110,347,143,343,139,373,106,413,76,468,53,526,37,582,26,633,20"/>
+<area shape="rect" title=" " alt="" coords="5,225,64,251"/>
+<area shape="poly" title=" " alt="" coords="634,26,486,42,402,58,320,81,244,113,172,151,63,220,60,215,169,146,241,108,318,76,400,53,485,37,634,20"/>
+<area shape="rect" title=" " alt="" coords="89,225,181,251"/>
+<area shape="poly" title=" " alt="" coords="634,27,510,44,442,59,376,81,311,112,250,150,159,219,156,215,247,146,308,108,374,76,440,54,509,39,633,21"/>
+<area shape="rect" title=" " alt="" coords="640,225,704,251"/>
+<area shape="poly" title=" " alt="" coords="694,33,667,52,646,80,638,114,641,150,650,184,662,212,657,214,645,186,636,151,633,114,642,78,664,49,690,29"/>
+<area shape="rect" href="packets_8h.html" title="Header file for packets.h." alt="" coords="729,225,813,251"/>
+<area shape="poly" title=" " alt="" coords="713,31,705,95,706,136,716,176,729,197,746,215,742,219,724,201,711,178,701,137,699,95,708,31"/>
+<area shape="rect" href="slavemanager_8h.html" title="Header file for slavemanager.cpp." alt="" coords="726,152,853,177"/>
+<area shape="poly" title=" " alt="" coords="718,30,726,64,741,103,770,141,765,144,736,105,721,65,713,31"/>
+<area shape="rect" title=" " alt="" coords="751,79,913,104"/>
+<area shape="poly" title=" " alt="" coords="734,28,802,69,799,74,731,33"/>
+<area shape="rect" title=" " alt="" coords="937,79,1007,104"/>
+<area shape="poly" title=" " alt="" coords="756,28,924,74,923,79,754,33"/>
+<area shape="rect" title=" " alt="" coords="1031,79,1134,104"/>
+<area shape="poly" title=" " alt="" coords="773,28,1018,75,1017,80,772,33"/>
+<area shape="rect" title=" " alt="" coords="1159,79,1233,104"/>
+<area shape="poly" title=" " alt="" coords="793,25,952,45,1145,76,1145,81,951,51,792,31"/>
+<area shape="rect" title=" " alt="" coords="1257,79,1337,104"/>
+<area shape="poly" title=" " alt="" coords="793,23,994,43,1244,76,1243,81,993,48,793,28"/>
+<area shape="rect" title=" " alt="" coords="1362,79,1449,104"/>
+<area shape="poly" title=" " alt="" coords="793,21,1037,40,1190,56,1348,76,1347,81,1190,61,1037,46,793,27"/>
+<area shape="poly" title=" " alt="" coords="463,106,368,149,366,144,461,102"/>
+<area shape="poly" title=" " alt="" coords="480,106,443,143,418,163,389,180,346,197,307,207,239,215,167,217,78,228,77,223,167,212,238,210,306,202,344,192,387,175,415,159,440,139,476,102"/>
+<area shape="rect" href="i2cclient_8h.html" title="Header file for i2cclient.cpp." alt="" coords="451,152,541,177"/>
+<area shape="poly" title=" " alt="" coords="492,104,496,138,491,139,487,105"/>
+<area shape="poly" title=" " alt="" coords="512,102,738,217,735,222,509,107"/>
+<area shape="poly" title=" " alt="" coords="537,101,728,146,727,151,536,107"/>
+<area shape="poly" title=" " alt="" coords="452,177,432,180,334,193,257,201,178,211,78,228,77,223,177,205,256,196,334,188,432,175,451,172"/>
+<area shape="poly" title=" " alt="" coords="452,177,195,228,194,222,451,172"/>
+<area shape="rect" title=" " alt="" coords="205,225,272,251"/>
+<area shape="poly" title=" " alt="" coords="455,180,286,227,284,221,454,175"/>
+<area shape="rect" title=" " alt="" coords="297,225,439,251"/>
+<area shape="poly" title=" " alt="" coords="477,180,402,221,400,216,474,175"/>
+<area shape="rect" title=" " alt="" coords="464,225,528,251"/>
+<area shape="poly" title=" " alt="" coords="499,178,499,212,493,212,493,178"/>
+<area shape="rect" title=" " alt="" coords="553,225,615,251"/>
+<area shape="poly" title=" " alt="" coords="512,175,561,214,557,219,508,179"/>
+<area shape="poly" title=" " alt="" coords="525,175,631,218,629,222,523,180"/>
+<area shape="poly" title=" " alt="" coords="541,175,716,220,715,225,539,180"/>
+<area shape="rect" title=" " alt="" coords="737,299,804,324"/>
+<area shape="poly" title=" " alt="" coords="773,251,773,285,768,285,768,251"/>
+<area shape="poly" title=" " alt="" coords="789,178,780,213,775,212,784,177"/>
+<area shape="rect" title=" " alt="" coords="837,225,912,251"/>
+<area shape="poly" title=" " alt="" coords="805,175,852,214,849,219,801,179"/>
+<area shape="rect" title=" " alt="" coords="937,225,1007,251"/>
+<area shape="poly" title=" " alt="" coords="820,175,930,218,928,223,818,180"/>
 </map>
 </div>
 </div>
@@ -193,7 +189,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a6b20d41d6252e9871430c242cb1a56e7" id="r_a6b20d41d6252e9871430c242cb1a56e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wemosserver_8cpp.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>&#160;&#160;&#160;1024</td></tr>
 <tr class="memdesc:a6b20d41d6252e9871430c242cb1a56e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum data size to be read or sent over the wire.  <br /></td></tr>
 <tr class="separator:a6b20d41d6252e9871430c242cb1a56e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a8f91f93d75a07f0ae45077db45b3eb" id="r_a0a8f91f93d75a07f0ae45077db45b3eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wemosserver_8cpp.html#a0a8f91f93d75a07f0ae45077db45b3eb">MAX_CLIENTS</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memitem:a0a8f91f93d75a07f0ae45077db45b3eb" id="r_a0a8f91f93d75a07f0ae45077db45b3eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wemosserver_8cpp.html#a0a8f91f93d75a07f0ae45077db45b3eb">MAX_CLIENTS</a>&#160;&#160;&#160;128</td></tr>
 <tr class="memdesc:a0a8f91f93d75a07f0ae45077db45b3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of clients that can be connected to the server.  <br /></td></tr>
 <tr class="separator:a0a8f91f93d75a07f0ae45077db45b3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -228,7 +224,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_CLIENTS&#160;&#160;&#160;100</td>
+          <td class="memname">#define MAX_CLIENTS&#160;&#160;&#160;128</td>
         </tr>
       </table>
 </div><div class="memdoc">

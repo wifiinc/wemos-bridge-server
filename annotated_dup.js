@@ -9,6 +9,7 @@ var annotated_dup =
     [ "sensor_packet_co2", "structsensor__packet__co2.html", "structsensor__packet__co2" ],
     [ "sensor_packet_generic", "structsensor__packet__generic.html", "structsensor__packet__generic" ],
     [ "sensor_packet_humidity", "structsensor__packet__humidity.html", "structsensor__packet__humidity" ],
+    [ "sensor_packet_lichtkrant", "structsensor__packet__lichtkrant.html", "structsensor__packet__lichtkrant" ],
     [ "sensor_packet_light", "structsensor__packet__light.html", "structsensor__packet__light" ],
     [ "sensor_packet_rgb_light", "structsensor__packet__rgb__light.html", "structsensor__packet__rgb__light" ],
     [ "sensor_packet_temperature", "structsensor__packet__temperature.html", "structsensor__packet__temperature" ],

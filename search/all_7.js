@@ -6,5 +6,6 @@ var searchData=
   ['i2cclient_3',['i2cclient',['../class_i2_c_client.html',1,'I2CClient'],['../class_i2_c_client.html#a094903a8fc8c53f31a2591201eca24a1',1,'I2CClient::I2CClient()'],['../class_i2_c_client.html#aa32e29c4a040830b82337ddb9f0b0078',1,'I2CClient::I2CClient(const I2CClient &amp;)=delete'],['../class_i2_c_client.html#ad20034806347e0bf9f845dea3da4cab3',1,'I2CClient::I2CClient(I2CClient &amp;&amp;)=delete']]],
   ['i2cclient_2ecpp_4',['i2cclient.cpp',['../i2cclient_8cpp.html',1,'']]],
   ['i2cclient_2eh_5',['i2cclient.h',['../i2cclient_8h.html',1,'']]],
-  ['i2cclienttests_6',['I2CClientTests',['../group___i2_c_client_tests.html',1,'']]]
+  ['i2cclienttests_6',['I2CClientTests',['../group___i2_c_client_tests.html',1,'']]],
+  ['isconnected_7',['isConnected',['../struct_slave_device.html#ab67561db79896af72b89ec1821a9ccf7',1,'SlaveDevice']]]
 ];

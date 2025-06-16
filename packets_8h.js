@@ -1,5 +1,6 @@
 var packets_8h =
 [
+    [ "sensor_packet_lichtkrant", "structsensor__packet__lichtkrant.html", "structsensor__packet__lichtkrant" ],
     [ "sensor_packet::sensor_data", "unionsensor__packet_1_1sensor__data.html", "unionsensor__packet_1_1sensor__data" ],
     [ "sensor_data", "unionsensor__data.html", "unionsensor__data" ],
     [ "PacketType", "packets_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56", [
@@ -18,7 +19,8 @@ var packets_8h =
       [ "PRESSURE", "packets_8h.html#a87ca7b4499ea761999a872674eba32afa6753182d0065061a189bb834145e8cd1", null ],
       [ "LIGHT", "packets_8h.html#a87ca7b4499ea761999a872674eba32afaf8589806bbf66241917092b2a6e18c6f", null ],
       [ "MOTION", "packets_8h.html#a87ca7b4499ea761999a872674eba32afaf96e6ea7a7375bd60bad3f3caae3cf27", null ],
-      [ "RGB_LIGHT", "packets_8h.html#a87ca7b4499ea761999a872674eba32afa3184da2def154d1ca5d5d570fc041f2e", null ]
+      [ "RGB_LIGHT", "packets_8h.html#a87ca7b4499ea761999a872674eba32afa3184da2def154d1ca5d5d570fc041f2e", null ],
+      [ "LICHTKRANT", "packets_8h.html#a87ca7b4499ea761999a872674eba32afa7fe21956cd4bb7f31a49ad30ade80174", null ]
     ] ],
     [ "__attribute__", "packets_8h.html#a6e6ad4343de40034f09e26a6c3bf982d", null ],
     [ "blue_state", "packets_8h.html#a318bcfc5b74e1b8432076c28a8470cd4", null ],
@@ -32,5 +34,6 @@ var packets_8h =
     [ "sensor_id", "packets_8h.html#a4235eb8d0a808af8011670dfe7a5671f", null ],
     [ "sensor_type", "packets_8h.html#ae9038d87bda9e88f1b76ffc29d2d04d3", null ],
     [ "target_state", "packets_8h.html#af938f749135abc18a65349448f97f5b4", null ],
+    [ "text", "packets_8h.html#a93bf080fb0a31c65f9b11bc0252dc812", null ],
     [ "value", "packets_8h.html#a17956fe0129d3d4c94ebc06cfef2ad82", null ]
 ];
