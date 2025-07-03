@@ -124,6 +124,8 @@ class I2CClient {
      * @throws std::runtime_error if receiving data fails.
      */
     struct sensor_packet retrievePacket(bool block = false);
+
+    struct sensor_packet popPacket();
 };
 
 #endif

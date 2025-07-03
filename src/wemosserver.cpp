@@ -36,7 +36,7 @@
 #define MAX_CLIENTS 128
 
 // private methods start here
-void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_address) {
+void WemosServer::handleClient(int client_fd, const struct sockaddr_in client_address) {
     uint8_t buffer[BUFFER_SIZE] = {0};
     ssize_t bytes_received;
 
@@ -152,16 +152,41 @@ void WemosServer::handleClient(int client_fd, const struct sockaddr_in &client_a
 }
 
 void WemosServer::processSensorData(const struct sensor_packet *packet) {
-    slave_manager.updateSlaveState(packet->data.generic.metadata.sensor_id, *packet);
+  uint8_t slave_id = packet->data.generic.metadata.sensor_id;
+    slave_manager.updateSlaveState(slave_id, *packet);
+
+    #define TAFEL_KNOP_1 0x80
+    #define TAFEL_LAMP_1 0x6D
 
     switch (packet->data.generic.metadata.sensor_type) {
         case SensorType::BUTTON: {
-            printf("Processing button data: ID=%u\n", packet->data.generic.metadata.sensor_id);
+            printf("Processing button data: ID=%u\n", slave_id);
 
+            printf("%hhu\n", TAFEL_KNOP_1);
             // TODO: een tafel-knop ingedrukt
+            switch (slave_id) {
+                case TAFEL_KNOP_1:
+                    // tafel knop 1
+                    struct sensor_packet pkt = {.header = {.length = sizeof(struct sensor_packet_light), .ptype = PacketType::DATA}, .data = {.light = {.metadata = {.sensor_type = SensorType::LIGHT, .sensor_id = TAFEL_LAMP_1}}}};
+
+                    struct sensor_packet led_state;
+                    led_state.header.ptype = PacketType::DASHBOARD_GET;
+                    led_state.header.length = sizeof(struct sensor_packet_light);
+                    led_state.data.light.metadata.sensor_id = TAFEL_LAMP_1;
+                    led_state.data.light.metadata.sensor_type = SensorType::LIGHT;
+
+                    i2c_client.sendRawData((uint8_t*)&led_state, sizeof(struct sensor_header) + led_state.header.length);
+                    led_state.data.light.target_state = !i2c_client.retrievePacket(true).data.light.target_state;
+                    printf("led state = %hhu\n", led_state.data.light.target_state);
+
+                    led_state.header.ptype = PacketType::DASHBOARD_POST;
+                    i2c_client.sendRawData((uint8_t*)&led_state, sizeof(struct sensor_header) + led_state.header.length);
+
+                break;
+              }
             break;
         }
-        
+
         default:
             printf("No action defined for sensor type %u\n",
                    packet->data.generic.metadata.sensor_type);
@@ -236,7 +261,8 @@ void WemosServer::start() {
     while (true) {
         struct sensor_packet pkt;
         try {
-            pkt = i2c_client.retrievePacket();
+            // pkt = i2c_client.retrievePacket();
+
             // std::cout << "packet received from the I2C hub!" << std::endl;
 
             // now do things with the I2C packet if necessary
@@ -258,7 +284,8 @@ void WemosServer::start() {
         std::cout << "Connection accepted from " << inet_ntoa(client_address.sin_addr) << ":"
                   << ntohs(client_address.sin_port) << std::endl;
 
-        handleClient(client_fd, client_address);
+        new std::thread(&WemosServer::handleClient, this, client_fd, client_address);
+        // printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
     }
 }
 

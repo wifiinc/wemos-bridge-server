@@ -12,7 +12,7 @@
 #include "wemosserver.h"
 
 #define SERVER_PORT 5000
-#define I2C_HUB_IP "192.168.73.245"
+#define I2C_HUB_IP "192.168.226.245"
 #define I2C_HUB_PORT 5000
 
 std::atomic<bool> global_shutdown_flag(false);

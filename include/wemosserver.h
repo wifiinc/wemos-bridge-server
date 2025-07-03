@@ -28,7 +28,7 @@ class WemosServer {
 
     SlaveManager slave_manager;
 
-    void handleClient(int client_fd, const struct sockaddr_in &client_address);
+    void handleClient(int client_fd, const struct sockaddr_in client_address);
 
     void processSensorData(const struct sensor_packet *data);
 

@@ -120,6 +120,7 @@ void I2CClient::receiveLoop() {
                 if (to_copy > sizeof(packet)) to_copy = sizeof(packet);
                 memcpy(&packet, receive_buffer + buffer_offset, to_copy);
 
+                printf("AAAAAAAAAAAAA\n");
                 queue_mutex.lock();
                 read_packets_queue.push(packet);
                 queue_mutex.unlock();
@@ -210,24 +211,30 @@ void I2CClient::sendRawData(uint8_t *data, size_t length) {
 }
 
 struct sensor_packet I2CClient::retrievePacket(bool block) {
-    queue_mutex.lock();
+    // if (read_packets_queue.size() < 1 && !block) {
+    //     // there are no packets available to retrieve,
+    //     // and we're not blocking
+    //     throw std::runtime_error("No packet data available to retrieve from I2C-bridge");
+    // } else if (read_packets_queue.size() < 1) {
+    //     // there are no packets available, but we block until there is
+    //     std::unique_lock lk(queue_mutex);
+    //     printf("waiting\n");
+    //     queue_condition.wait(lk);
+    //     printf("done waiting\n");
+    // }
 
-    if (read_packets_queue.size() < 1 && !block) {
-        // there are no packets available to retrieve,
-        // and we're not blocking
-        queue_mutex.unlock();
-        throw std::runtime_error("No packet data available to retrieve from I2C-bridge");
-    } else if (read_packets_queue.size() < 1) {
-        // there are no packets available, but we block until there is
-        std::unique_lock lk(queue_mutex);
-        queue_condition.wait(lk);
+    struct sensor_packet pkt = {0};
+    while (read_packets_queue.size() < 1) {
+        if (!block) return pkt;
+        usleep(1000);
     }
 
     struct sensor_packet return_packet;
     memcpy(&return_packet, &read_packets_queue.front(), sizeof(return_packet));
     read_packets_queue.pop();
 
-    queue_mutex.unlock();
+    printf("packet get\n");
 
+    printf("returning\n");
     return return_packet;
 }
