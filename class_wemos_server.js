@@ -4,7 +4,7 @@ var class_wemos_server =
     [ "~WemosServer", "class_wemos_server.html#a4c34f1b7fed33cd7193bfea5dcbf4b19", null ],
     [ "WemosServer", "class_wemos_server.html#a8e99a0a48a300288776a8fb3c79c1070", null ],
     [ "WemosServer", "class_wemos_server.html#a11162f3ae1ba2085cc7f124f69de374d", null ],
-    [ "handleClient", "class_wemos_server.html#ab6016a526bde64e94e24fa1ade55dcb5", null ],
+    [ "handleClient", "class_wemos_server.html#a0ecadb7d5d2c6790fd062208fb6f5764", null ],
     [ "operator=", "class_wemos_server.html#a6ec12e8b7757c4b3862fd3f330a7c0af", null ],
     [ "operator=", "class_wemos_server.html#ab1f479fe71e15ccfbce4fe4489c6d271", null ],
     [ "processSensorData", "class_wemos_server.html#afccd015a3f6fcfb6daa822e28647edbf", null ],

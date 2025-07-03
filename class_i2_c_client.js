@@ -9,6 +9,7 @@ var class_i2_c_client =
     [ "openConnection", "class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740", null ],
     [ "operator=", "class_i2_c_client.html#a3cf9e9d86e6e630c57e5fd4c87e9c99f", null ],
     [ "operator=", "class_i2_c_client.html#a9ec764a84525d4e429e938e384f25d65", null ],
+    [ "popPacket", "class_i2_c_client.html#a086e01c3ebef97badcfe18be609e7cee", null ],
     [ "receiveLoop", "class_i2_c_client.html#ad4ef73ba657dfd720c6c09f4246f3842", null ],
     [ "retrievePacket", "class_i2_c_client.html#a5d1591cf4c646df1e6964d72eab9b5fd", null ],
     [ "sendRawData", "class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902", null ],

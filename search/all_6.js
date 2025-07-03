@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handleclient_0',['handleClient',['../class_wemos_server.html#ab6016a526bde64e94e24fa1ade55dcb5',1,'WemosServer']]],
+  ['handleclient_0',['handleClient',['../class_wemos_server.html#a0ecadb7d5d2c6790fd062208fb6f5764',1,'WemosServer']]],
   ['header_1',['header',['../structsensor__packet.html#a5306b1bac0facaf2177ce28f17c3ee36',1,'sensor_packet::header'],['../packets_8h.html#a59d5ad0348b66f56f68b9883b14d9afd',1,'header:&#160;packets.h']]],
   ['heartbeat_2',['heartbeat',['../unionsensor__packet_1_1sensor__data.html#a0b23a90eb67828661e5e226f08e24c0e',1,'sensor_packet::sensor_data::heartbeat'],['../unionsensor__data.html#ae70d3ba0418d0ca8f6f6155c0c82b44e',1,'sensor_data::heartbeat'],['../packets_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a0d895a0a05a7cce9b2c0c8bb252f78cc',1,'HEARTBEAT:&#160;packets.h']]],
   ['hub_5faddress_3',['hub_address',['../class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4',1,'I2CClient']]],

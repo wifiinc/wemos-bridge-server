@@ -36,7 +36,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Wemos Bridge Server
-   &#160;<span id="projectnumber">commit-d762272</span>
+   &#160;<span id="projectnumber">commit-4fb2e3f</span>
    </div>
    <div id="projectbrief">Better than any software HHS has ever made</div>
   </td>
@@ -232,147 +232,154 @@ $(document).ready(function(){initNavTree('i2cclient_8cpp_source.html',''); initR
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordflow">if</span> (to_copy &gt; <span class="keyword">sizeof</span>(packet)) to_copy = <span class="keyword">sizeof</span>(packet);</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                memcpy(&amp;packet, receive_buffer + buffer_offset, to_copy);</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                <a class="code hl_variable" href="class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c">queue_mutex</a>.lock();</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <a class="code hl_variable" href="class_i2_c_client.html#afffbd399f84de6e2c5cca1683dd6f1fb">read_packets_queue</a>.push(packet);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <a class="code hl_variable" href="class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c">queue_mutex</a>.unlock();</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                <a class="code hl_variable" href="class_i2_c_client.html#a58cc93601b24a3f130ff6ac78b522325">queue_condition</a>.notify_one();  <span class="comment">// maybe switch this with the line before if issues</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                                               <span class="comment">// occur - Erynn</span></div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                buffer_offset += <span class="keyword">sizeof</span>(*head) + <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            } <span class="keywordflow">while</span> (buffer_offset + <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structsensor__header.html">sensor_header</a>) &lt;= amount_read);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        }</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    std::terminate();</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                printf(<span class="stringliteral">&quot;AAAAAAAAAAAAA\n&quot;</span>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <a class="code hl_variable" href="class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c">queue_mutex</a>.lock();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <a class="code hl_variable" href="class_i2_c_client.html#afffbd399f84de6e2c5cca1683dd6f1fb">read_packets_queue</a>.push(packet);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                <a class="code hl_variable" href="class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c">queue_mutex</a>.unlock();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                <a class="code hl_variable" href="class_i2_c_client.html#a58cc93601b24a3f130ff6ac78b522325">queue_condition</a>.notify_one();  <span class="comment">// maybe switch this with the line before if issues</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                                               <span class="comment">// occur - Erynn</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                buffer_offset += <span class="keyword">sizeof</span>(*head) + <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            } <span class="keywordflow">while</span> (buffer_offset + <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structsensor__header.html">sensor_header</a>) &lt;= amount_read);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    std::terminate();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
 </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">  137</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">I2CClient::setup</a>(<span class="keyword">const</span> std::string &amp;hub_ip, <span class="keywordtype">int</span> hub_port) {</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">if</span> (inet_pton(AF_INET, hub_ip.c_str(), &amp;<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_addr) &lt;= 0) {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        perror(<span class="stringliteral">&quot;inet_pton()&quot;</span>);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid IP address&quot;</span>);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">if</span> (hub_port &lt;= 0 || hub_port &gt; 65535) <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid port number&quot;</span>);</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_family = AF_INET;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_port = htons(hub_port);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">  138</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">I2CClient::setup</a>(<span class="keyword">const</span> std::string &amp;hub_ip, <span class="keywordtype">int</span> hub_port) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">if</span> (inet_pton(AF_INET, hub_ip.c_str(), &amp;<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_addr) &lt;= 0) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        perror(<span class="stringliteral">&quot;inet_pton()&quot;</span>);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid IP address&quot;</span>);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordflow">if</span> (hub_port &lt;= 0 || hub_port &gt; 65535) <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid port number&quot;</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_family = AF_INET;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_port = htons(hub_port);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>}</div>
 </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="foldopen" id="foldopen00149" data-start="{" data-end="}">
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">  149</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">I2CClient::openConnection</a>() {</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> &gt;= 0) {</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        close(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = -1;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::string ip(inet_ntoa(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_addr));</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    uint16_t port = ntohs(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_port);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connecting to I2C hub at &quot;</span> &lt;&lt; ip &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = socket(AF_INET, SOCK_STREAM, 0);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> &lt; 0) {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Socket creation failed&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordflow">if</span> (connect(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>, (<span class="keyword">struct</span> sockaddr *)&amp;<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>)) &lt; 0) {</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordtype">int</span> err = errno;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Connection failed: &quot;</span> &lt;&lt; strerror(err) &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        close(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = -1;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connected to I2C hub at &quot;</span> &lt;&lt; ip &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">  150</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">I2CClient::openConnection</a>() {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> &gt;= 0) {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        close(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = -1;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    std::string ip(inet_ntoa(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_addr));</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    uint16_t port = ntohs(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>.sin_port);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connecting to I2C hub at &quot;</span> &lt;&lt; ip &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = socket(AF_INET, SOCK_STREAM, 0);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> &lt; 0) {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Socket creation failed&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">if</span> (connect(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>, (<span class="keyword">struct</span> sockaddr *)&amp;<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">hub_address</a>)) &lt; 0) {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordtype">int</span> err = errno;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Connection failed: &quot;</span> &lt;&lt; strerror(err) &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        close(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a> = -1;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connected to I2C hub at &quot;</span> &lt;&lt; ip &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
 </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">  181</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">I2CClient::start</a>() {</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a>) {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        std::cerr</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            &lt;&lt; <span class="stringliteral">&quot;Could not start communicating with I2C-bridge because not connected to I2C hub&quot;</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Not connected to I2C-bridge&quot;</span>);</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_variable" href="class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc">running</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_variable" href="class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0">receive_thread</a> = std::thread(&amp;<a class="code hl_function" href="class_i2_c_client.html#ad4ef73ba657dfd720c6c09f4246f3842">I2CClient::receiveLoop</a>, <span class="keyword">this</span>);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">  182</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">I2CClient::start</a>() {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a>) {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        std::cerr</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            &lt;&lt; <span class="stringliteral">&quot;Could not start communicating with I2C-bridge because not connected to I2C hub&quot;</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Not connected to I2C-bridge&quot;</span>);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_variable" href="class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc">running</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <a class="code hl_variable" href="class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0">receive_thread</a> = std::thread(&amp;<a class="code hl_function" href="class_i2_c_client.html#ad4ef73ba657dfd720c6c09f4246f3842">I2CClient::receiveLoop</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
 </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="foldopen" id="foldopen00193" data-start="{" data-end="}">
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">  193</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">I2CClient::closeConnection</a>() {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a>) {</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Could not close the connection to I2C-bridge because not connected to I2C &quot;</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                     <span class="stringliteral">&quot;hub (either already closed, or never connected in the first place)&quot;</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                  &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <a class="code hl_variable" href="class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc">running</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <a class="code hl_variable" href="class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0">receive_thread</a>.join();</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">  194</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">I2CClient::closeConnection</a>() {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">connected</a>) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Could not close the connection to I2C-bridge because not connected to I2C &quot;</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                     <span class="stringliteral">&quot;hub (either already closed, or never connected in the first place)&quot;</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                  &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <a class="code hl_variable" href="class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc">running</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <a class="code hl_variable" href="class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0">receive_thread</a>.join();</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>}</div>
 </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">  205</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">I2CClient::sendRawData</a>(uint8_t *<a class="code hl_variable" href="packets_8h.html#a6887532c703a2e633baad65f5e2ffc62">data</a>, <span class="keywordtype">size_t</span> <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>) {</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span> (send(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>, <a class="code hl_variable" href="packets_8h.html#a6887532c703a2e633baad65f5e2ffc62">data</a>, <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>, 0) == -1) {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        perror(<span class="stringliteral">&quot;send() failed&quot;</span>);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Sending data to I2C-bridge failed&quot;</span>);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">  206</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">I2CClient::sendRawData</a>(uint8_t *<a class="code hl_variable" href="packets_8h.html#a6887532c703a2e633baad65f5e2ffc62">data</a>, <span class="keywordtype">size_t</span> <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">if</span> (send(<a class="code hl_variable" href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">client_fd</a>, <a class="code hl_variable" href="packets_8h.html#a6887532c703a2e633baad65f5e2ffc62">data</a>, <a class="code hl_variable" href="packets_8h.html#ab2b3adeb2a67e656ff030b56727fd0ac">length</a>, 0) == -1) {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        perror(<span class="stringliteral">&quot;send() failed&quot;</span>);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Sending data to I2C-bridge failed&quot;</span>);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>}</div>
 </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a5d1591cf4c646df1e6964d72eab9b5fd">  212</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsensor__packet.html">sensor_packet</a> <a class="code hl_class" href="class_i2_c_client.html">I2CClient</a>::retrievePacket(bool block) {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    queue_mutex.lock();</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">if</span> (read_packets_queue.size() &lt; 1 &amp;&amp; !block) {</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="comment">// there are no packets available to retrieve,</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="comment">// and we&#39;re not blocking</span></div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        queue_mutex.unlock();</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No packet data available to retrieve from I2C-bridge&quot;</span>);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (read_packets_queue.size() &lt; 1) {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="comment">// there are no packets available, but we block until there is</span></div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        std::unique_lock lk(queue_mutex);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        queue_condition.wait(lk);</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="foldopen" id="foldopen00213" data-start="{" data-end="}">
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="class_i2_c_client.html#a5d1591cf4c646df1e6964d72eab9b5fd">  213</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsensor__packet.html">sensor_packet</a> <a class="code hl_class" href="class_i2_c_client.html">I2CClient</a>::retrievePacket(bool block) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="comment">// if (read_packets_queue.size() &lt; 1 &amp;&amp; !block) {</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="comment">//     // there are no packets available to retrieve,</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">//     // and we&#39;re not blocking</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">//     throw std::runtime_error(&quot;No packet data available to retrieve from I2C-bridge&quot;);</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// } else if (read_packets_queue.size() &lt; 1) {</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">//     // there are no packets available, but we block until there is</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">//     std::unique_lock lk(queue_mutex);</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">//     printf(&quot;waiting\n&quot;);</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">//     queue_condition.wait(lk);</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">//     printf(&quot;done waiting\n&quot;);</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// }</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__packet.html">sensor_packet</a> return_packet;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    memcpy(&amp;return_packet, &amp;read_packets_queue.front(), <span class="keyword">sizeof</span>(return_packet));</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    read_packets_queue.pop();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    queue_mutex.unlock();</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__packet.html">sensor_packet</a> pkt = {0};</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">while</span> (read_packets_queue.size() &lt; 1) {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="keywordflow">if</span> (!block) <span class="keywordflow">return</span> pkt;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        usleep(1000);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">return</span> return_packet;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>}</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__packet.html">sensor_packet</a> return_packet;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    memcpy(&amp;return_packet, &amp;read_packets_queue.front(), <span class="keyword">sizeof</span>(return_packet));</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    read_packets_queue.pop();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    printf(<span class="stringliteral">&quot;packet get\n&quot;</span>);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    printf(<span class="stringliteral">&quot;returning\n&quot;</span>);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordflow">return</span> return_packet;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>}</div>
 </div>
 <div class="ttc" id="aclass_i2_c_client_html"><div class="ttname"><a href="class_i2_c_client.html">I2CClient</a></div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00024">i2cclient.h:24</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a05bb8c9587538b55e9c00f0a7964dd3c"><div class="ttname"><a href="class_i2_c_client.html#a05bb8c9587538b55e9c00f0a7964dd3c">I2CClient::queue_mutex</a></div><div class="ttdeci">std::mutex queue_mutex</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00036">i2cclient.h:36</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a094903a8fc8c53f31a2591201eca24a1"><div class="ttname"><a href="class_i2_c_client.html#a094903a8fc8c53f31a2591201eca24a1">I2CClient::I2CClient</a></div><div class="ttdeci">I2CClient()</div><div class="ttdoc">Constructor for I2CClient class.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00028">i2cclient.cpp:28</a></div></div>
-<div class="ttc" id="aclass_i2_c_client_html_a09e1c69fe59d985d5e261eb27da6d992"><div class="ttname"><a href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">I2CClient::closeConnection</a></div><div class="ttdeci">void closeConnection()</div><div class="ttdoc">Disconnects from the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00193">i2cclient.cpp:193</a></div></div>
+<div class="ttc" id="aclass_i2_c_client_html_a09e1c69fe59d985d5e261eb27da6d992"><div class="ttname"><a href="class_i2_c_client.html#a09e1c69fe59d985d5e261eb27da6d992">I2CClient::closeConnection</a></div><div class="ttdeci">void closeConnection()</div><div class="ttdoc">Disconnects from the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00194">i2cclient.cpp:194</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a2b481f8139c5cb343be57ab04f0e8d65"><div class="ttname"><a href="class_i2_c_client.html#a2b481f8139c5cb343be57ab04f0e8d65">I2CClient::connected</a></div><div class="ttdeci">std::atomic&lt; bool &gt; connected</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00032">i2cclient.h:32</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a3b15dc7539356fb22514124c3c44d0dc"><div class="ttname"><a href="class_i2_c_client.html#a3b15dc7539356fb22514124c3c44d0dc">I2CClient::running</a></div><div class="ttdeci">std::atomic&lt; bool &gt; running</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00033">i2cclient.h:33</a></div></div>
-<div class="ttc" id="aclass_i2_c_client_html_a3f39667fa4c09303af919f4608404e72"><div class="ttname"><a href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">I2CClient::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts the I2C client.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00181">i2cclient.cpp:181</a></div></div>
+<div class="ttc" id="aclass_i2_c_client_html_a3f39667fa4c09303af919f4608404e72"><div class="ttname"><a href="class_i2_c_client.html#a3f39667fa4c09303af919f4608404e72">I2CClient::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts the I2C client.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00182">i2cclient.cpp:182</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a468ce4f8268ffb131f285205a94a8a80"><div class="ttname"><a href="class_i2_c_client.html#a468ce4f8268ffb131f285205a94a8a80">I2CClient::~I2CClient</a></div><div class="ttdeci">~I2CClient()</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00032">i2cclient.cpp:32</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a58cc93601b24a3f130ff6ac78b522325"><div class="ttname"><a href="class_i2_c_client.html#a58cc93601b24a3f130ff6ac78b522325">I2CClient::queue_condition</a></div><div class="ttdeci">std::condition_variable queue_condition</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00038">i2cclient.h:38</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a67a500f2c6173b305d71a2eecd282ef4"><div class="ttname"><a href="class_i2_c_client.html#a67a500f2c6173b305d71a2eecd282ef4">I2CClient::hub_address</a></div><div class="ttdeci">struct sockaddr_in hub_address</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00028">i2cclient.h:28</a></div></div>
-<div class="ttc" id="aclass_i2_c_client_html_a72d4fb3ede840666b4d28a7855e16e23"><div class="ttname"><a href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">I2CClient::setup</a></div><div class="ttdeci">void setup(const std::string &amp;ip, int port)</div><div class="ttdoc">Initializes the settings necessary for connecting to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00137">i2cclient.cpp:137</a></div></div>
+<div class="ttc" id="aclass_i2_c_client_html_a72d4fb3ede840666b4d28a7855e16e23"><div class="ttname"><a href="class_i2_c_client.html#a72d4fb3ede840666b4d28a7855e16e23">I2CClient::setup</a></div><div class="ttdeci">void setup(const std::string &amp;ip, int port)</div><div class="ttdoc">Initializes the settings necessary for connecting to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00138">i2cclient.cpp:138</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a925b93c523cf1b967632a7b9e45a0ed6"><div class="ttname"><a href="class_i2_c_client.html#a925b93c523cf1b967632a7b9e45a0ed6">I2CClient::receive_mutex</a></div><div class="ttdeci">std::mutex receive_mutex</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00035">i2cclient.h:35</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_a9bf2d4c2fd05670479be3b3dbebf247e"><div class="ttname"><a href="class_i2_c_client.html#a9bf2d4c2fd05670479be3b3dbebf247e">I2CClient::client_fd</a></div><div class="ttdeci">int client_fd</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00026">i2cclient.h:26</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_ac364ec962a56fa9e83b09ce05f022ab0"><div class="ttname"><a href="class_i2_c_client.html#ac364ec962a56fa9e83b09ce05f022ab0">I2CClient::receive_thread</a></div><div class="ttdeci">std::thread receive_thread</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00030">i2cclient.h:30</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_ad4ef73ba657dfd720c6c09f4246f3842"><div class="ttname"><a href="class_i2_c_client.html#ad4ef73ba657dfd720c6c09f4246f3842">I2CClient::receiveLoop</a></div><div class="ttdeci">void receiveLoop()</div><div class="ttdoc">Internal receive loop for handling incoming data from the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00045">i2cclient.cpp:45</a></div></div>
-<div class="ttc" id="aclass_i2_c_client_html_ae0fd8135b7fea2884e7f108265af6902"><div class="ttname"><a href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">I2CClient::sendRawData</a></div><div class="ttdeci">void sendRawData(uint8_t *data, size_t length)</div><div class="ttdoc">Internal method to send data to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00205">i2cclient.cpp:205</a></div></div>
-<div class="ttc" id="aclass_i2_c_client_html_ae8abffb8d1287190e405566d60e7b740"><div class="ttname"><a href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">I2CClient::openConnection</a></div><div class="ttdeci">bool openConnection()</div><div class="ttdoc">Connects to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00149">i2cclient.cpp:149</a></div></div>
+<div class="ttc" id="aclass_i2_c_client_html_ae0fd8135b7fea2884e7f108265af6902"><div class="ttname"><a href="class_i2_c_client.html#ae0fd8135b7fea2884e7f108265af6902">I2CClient::sendRawData</a></div><div class="ttdeci">void sendRawData(uint8_t *data, size_t length)</div><div class="ttdoc">Internal method to send data to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00206">i2cclient.cpp:206</a></div></div>
+<div class="ttc" id="aclass_i2_c_client_html_ae8abffb8d1287190e405566d60e7b740"><div class="ttname"><a href="class_i2_c_client.html#ae8abffb8d1287190e405566d60e7b740">I2CClient::openConnection</a></div><div class="ttdeci">bool openConnection()</div><div class="ttdoc">Connects to the I2C hub.</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00150">i2cclient.cpp:150</a></div></div>
 <div class="ttc" id="aclass_i2_c_client_html_afffbd399f84de6e2c5cca1683dd6f1fb"><div class="ttname"><a href="class_i2_c_client.html#afffbd399f84de6e2c5cca1683dd6f1fb">I2CClient::read_packets_queue</a></div><div class="ttdeci">std::queue&lt; struct sensor_packet &gt; read_packets_queue</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8h_source.html#l00040">i2cclient.h:40</a></div></div>
 <div class="ttc" id="ai2cclient_8cpp_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="i2cclient_8cpp.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00026">i2cclient.cpp:26</a></div></div>
 <div class="ttc" id="ai2cclient_8cpp_html_aa0f13a35bb2cdbb8e3051f95893eba50"><div class="ttname"><a href="i2cclient_8cpp.html#aa0f13a35bb2cdbb8e3051f95893eba50">THREAD_RELINQUISH</a></div><div class="ttdeci">#define THREAD_RELINQUISH(mut)</div><div class="ttdef"><b>Definition</b> <a href="i2cclient_8cpp_source.html#l00039">i2cclient.cpp:39</a></div></div>
